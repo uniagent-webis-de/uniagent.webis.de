@@ -115,8 +115,8 @@
             <p><b>Registering?</b> Sign up on TIRA and register your team to the task
             directly: <a href="https://www.tira.io/signup" target="_blank" rel="noopener">Sign&nbsp;up on TIRA</a>
             &rarr; <a href="https://www.tira.io/task-overview/uniagent-2026/" target="_blank" rel="noopener">register to UniAgent&nbsp;2026</a>.
-            Your TIRA group <i>is</i> your team registration, with no separate form.
-            Details in <a href="#participation">Participation</a> below.</p>
+            Your TIRA group <i>is</i> your team registration.
+            See <a href="#participation">Participation</a> below for details.</p>
         </div>
 
         <ul class="uk-list">
@@ -146,7 +146,7 @@
         environments. Yet their evaluation remains difficult for lack of reproducible,
         bounded laboratories. A university administration is a closed-world,
         socio-technical environment in which many tasks follow standardized,
-        well-documented processes, which makes it particularly suited for a
+        well-documented processes. Such an environment is therefore particularly suited to a
         Cranfield-style evaluation of AI&nbsp;agents. The controlled, reproducible
         evaluation of agentic AI in such enterprise-like settings is an underexplored
         yet highly relevant problem.</p>
@@ -195,9 +195,9 @@
         <h3 class="uk-margin-small-top">Sub-tasks</h3>
         <p>To lower the barrier to entry, participants may address any of three
         sub-tasks, each taking the task description as input. The sub-tasks are
-        <b>independent</b>: you may enter any one of them (or several) without having
-        entered the others; for example, a Solving submission does not require a
-        Retrieval or Simulation submission first.</p>
+        <b>independent</b>. You may enter any subset of them, in any combination. A
+        Solving submission, for example, requires no prior Retrieval or Simulation
+        submission.</p>
         <ol class="uk-list uk-list-decimal">
             <li><b>Retrieval</b>: retrieve documents relevant to the current
             state and task progress (focus on recall); output the run and a log of
@@ -228,23 +228,28 @@
         controlled set of tools.</p>
 
         <h3 class="uk-margin-small-top">Document collection</h3>
-        <p>Compiled by crawling the web pages of the University of Kassel and other
-        sources together with the <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
-        project, which also provides pre-computed embeddings and a RAG&nbsp;API endpoint
-        for participants who do not wish to index the collection themselves. First-edition
-        tasks are selected to have sufficient English documentation.</p>
-        <p>Because the collection and topics are derived from real university records,
-        they are, even after pseudonymization, made available <b>exclusively through
-        TIRA</b> and only to registered participants. The full evaluation collection and
-        topics are not released for direct download; participants submit their agent as
-        <b>code</b> (a Docker image) that TIRA executes against this data on their behalf.
-        See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
-        participation guide</a> for how code submissions work. For local development, a
-        small, non-confidential <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;)
-        is already published on TIRA and downloadable once you are registered. It shows
-        the topic format (the &ldquo;Example topic&rdquo; figure below is one such topic)
-        and lets you confirm your submission runs correctly before the real one. This demo
-        set is representative of, but distinct from, the full evaluation topics.</p>
+        <p>The document collection is a crawl of the web pages of the University of Kassel
+        and other sources, compiled with the
+        <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
+        project. Parts of the collection are internal to the university. We therefore index
+        it ourselves and provide access through search and RAG&nbsp;endpoints. The project
+        supplies pre-computed embeddings for these endpoints. Participants query the provded
+        endpoints. First-edition tasks are selected to
+        have sufficient English documentation.</p>
+        <p>The collection and topics are derived from real university records. Even after
+        pseudonymization, they remain available <b>only through TIRA</b>, and only to
+        registered participants. The full evaluation collection and topics are not
+        released for download. Instead, you submit your agent as <b>code</b> (a Docker
+        image), and TIRA executes it against the data on your behalf. You therefore never
+        see these topics. TIRA returns the evaluation measures for your run. The gold
+        references are processed by our evaluator alone, never by a submitted system. See
+        <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
+        participation guide</a> for how code submissions work.</p>
+        <p>For local development, a small <b>demo dataset</b>
+        (&ldquo;business-trip-spot-check&rdquo;) is already published on TIRA. Registered
+        participants can download it. It shows the topic format and lets you confirm that
+        your submission runs correctly. The &ldquo;Example topic&rdquo; figure below shows
+        one such topic. The demo set does not overlap with the evaluation topics.</p>
 
         <h3 class="uk-margin-small-top">Topics</h3>
         <p>We compile a collection of 50&nbsp;topics across the three task areas above,
@@ -252,9 +257,9 @@
         University of Kassel's &ldquo;AI&nbsp;FrAIdays&rdquo; seminar series. Each topic
         consists of a user query (with any attached documents), an expected output
         following the prescribed process, and annotations for query type, complexity,
-        and rule area. As above, the full topic set is hosted on TIRA for registered
-        participants; a small demo set is already published there, and a handful of
-        examples are shown on this site.</p>
+        and rule area. The full topic set is hosted on TIRA for registered participants. A
+        small demo set is already published there. This site shows a handful of
+        examples.</p>
 
         <h3 class="uk-margin-small-top">Tools</h3>
         <p>Tool access is provided through one of the established AI agent protocols
@@ -305,14 +310,14 @@
             whether the required decision points and documents are accounted for. The
             supporting retrieved documents are scored as in the Retrieval sub-task.</li>
             <li><b>(3) Solving.</b> The synthesized solution is scored on <i>task
-            success</i>, a binary criterion (the minimal solution accepted by
-            peers, e.g., a reimbursement application with valid receipts), and,
-            among non-successful runs, on the number and severity of errors (rule
-            violations, missing receipts, incorrect form fields), which enable a finer
-            ranking. The agent behavior log additionally yields tool-use accuracy
-            (precision/recall of tool calls) and retrieval quality, and a qualitative
-            audit verifies the solution was reached for the right reasons rather than by
-            chance.</li>
+            success</i>, a binary criterion. A run succeeds if it produces the minimal
+            solution a peer would accept, such as a reimbursement application with valid
+            receipts. Non-successful runs are then ranked more finely by the number and
+            severity of their errors: rule violations, missing receipts, or incorrect form
+            fields. The agent behavior log additionally yields tool-use accuracy
+            (precision and recall of tool calls) and retrieval quality. A qualitative
+            audit finally verifies that the solution was reached for the right
+            reasons.</li>
         </ul>
         <p>Across all sub-tasks we also report <b>efficiency</b> measures: manual
         task-completion time (a trained-human baseline), runtime, and environmental
@@ -333,15 +338,14 @@
         <ol class="uk-list uk-list-decimal">
             <li><b>Register on TIRA.</b> <a href="https://www.tira.io/signup" target="_blank" rel="noopener">Sign up on TIRA</a>,
             then <a href="https://www.tira.io/task-overview/uniagent-2026/" target="_blank" rel="noopener">register your team to the UniAgent&nbsp;2026 task</a>.
-            Registration is open to any number of members per TIRA group; the group you
-            register <i>is</i> your team, and there is no separate team-information
-            form to fill in afterwards. You may register for any subset of the three
-            sub-tasks (see <a href="#task">Sub-tasks</a>), and change this later.</li>
-            <li><b>Develop your agent</b> against the published example topics and
-            documents, and against the full document collection, topics, and tools once
-            released to registered teams on TIRA (see <a href="#data">Data &amp; Tools</a>).
-            Tools are accessed via the prescribed AI agent protocol; you may integrate your
-            own local tools.</li>
+            A TIRA group may have any number of members. The group you register
+            <i>is</i> your team, so no separate team-information form is needed
+            afterwards. You may register for any subset of the three
+            <a href="#task">sub-tasks</a> and revise that choice later.</li>
+            <li><b>Develop your agent</b> against the demo dataset on TIRA and the example
+            topic shown above (see <a href="#data">Data &amp; Tools</a>). Tools are accessed
+            via the prescribed AI agent protocol. You may also integrate your own local
+            tools.</li>
             <li><b>Submit your runs</b> as code (a Docker image) via TIRA, in the
             prescribed formats together with the agent behavior log. Validation tools are
             provided to check submission validity.</li>
@@ -359,7 +363,7 @@
         <table class="uk-table uk-table-divider uk-table-small uk-table-hover">
             <tbody>
                 <tr><td><b>July 2026</b></td><td>Launch; registration opens; a small demo dataset published on TIRA; tools to follow.</td></tr>
-                <tr><td><b>August 2026</b></td><td>Team formation deadline; training topics released.</td></tr>
+                <tr><td><b>August 2026</b></td><td>Team formation deadline.</td></tr>
                 <tr><td><b>Mid-October 2026</b></td><td>Submission deadline for system runs.</td></tr>
                 <tr><td><b>Late October 2026</b></td><td>Evaluation period (expert judgments and automatic measures).</td></tr>
                 <tr><td><b>Early November 2026</b></td><td>Notification of results.</td></tr>
@@ -534,7 +538,10 @@
         <p>To participate, register on TIRA as described under
         <a href="#participation">Participation</a>. For questions about the task, contact
         the organizers at <a href="mailto:simon.ruth@uni-kassel.de">simon.ruth@uni-kassel.de</a>
-        and <a href="mailto:martin.potthast@uni-kassel.de">martin.potthast@uni-kassel.de</a>.</p>
+        and <a href="mailto:martin.potthast@uni-kassel.de">martin.potthast@uni-kassel.de</a>.
+        Releases and announcements go out on our mailing list,
+        <a href="mailto:uniagent@lists.its.uni-kassel.de">uniagent@lists.its.uni-kassel.de</a>.
+        We recommend joining it.</p>
     </div>
 </main>
 
