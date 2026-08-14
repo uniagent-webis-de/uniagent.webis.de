@@ -154,10 +154,10 @@
         evaluation of agentic AI in a university environment, namely the University of
         Kassel. Participants build agents that solve standardized administrative tasks
         (e.g., travel permits and reimbursements) by retrieving the relevant
-        regulations, planning the necessary steps, and using a controlled set of tools,
+        regulations and planning the necessary steps,
         while complying with the institution's codes of conduct. The document collection
         is compiled together with the <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
-        project, which also provides search and retrieval endpoints.</p>
+        project.</p>
 
 
         <!--
@@ -219,26 +219,16 @@
         SECTION Data & Tools
         -->
         <h2><a id="data"></a>Data &amp; Tools</h2>
-        <p>The environment comprises a document collection, a set of topics, and a
-        controlled set of tools.</p>
+        <p>The environment comprises a document collection, a set of topics, and a hosted
+        language model.</p>
 
         <h3 class="uk-margin-small-top">Document collection</h3>
         <p>The document collection is a crawl of the University of Kassel's web pages and
         other sources, compiled with the
         <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
-        project. Parts of it are internal. We index the collection and provide search and
-        RAG&nbsp;endpoints, which participants query instead of building their own index.
+        project. We mount the crawl and a CIFF&nbsp;index directly into your container, so
+        you build retrieval on top of them and keep full control over index and ranking.
         First-edition tasks have sufficient English documentation.</p>
-        <p>The collection and the topics stay inside <b>TIRA</b> and are available to
-        registered participants only. The evaluation topics are not released for download.
-        You submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
-        data. You receive the evaluation measures, never the topics or the gold references.
-        See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
-        participation guide</a> for details.</p>
-        <p>For local development, a small <b>demo dataset</b>
-        (&ldquo;business-trip-spot-check&rdquo;) is published on TIRA and downloadable by
-        registered participants. It shows the topic format and lets you check that your
-        submission runs. It does not overlap with the evaluation topics.</p>
 
         <h3 class="uk-margin-small-top">Topics</h3>
         <p>We compile a collection of 50&nbsp;topics across the three task areas above,
@@ -247,30 +237,30 @@
         are fully anonymized. Each topic
         consists of a user query (with any attached documents), an expected output
         following the prescribed process, and annotations for query type, complexity,
-        and rule area. The full topic set is hosted on TIRA for registered participants.</p>
+        and rule area.</p>
+        <p>A <b>public part</b> is released for development, including the relevant
+        documents and the solutions for that part, together with a set of synthetic cases.
+        A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA lets
+        you check that your submission runs. For the Retrieval sub-task, queries come from
+        us and from agent solutions.</p>
+        <p>The <b>evaluation topics</b> stay inside <b>TIRA</b> and are not released. You
+        submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
+        data. You receive the evaluation measures, never the evaluation topics or the gold
+        references. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
+        participation guide</a> for details.</p>
 
-        <h3 class="uk-margin-small-top">Tools</h3>
-        <p>Tool access is provided through one of the established AI agent protocols
-        (e.g., <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a>
-        or <a href="https://a2a-protocol.org/" target="_blank" rel="noopener">A2A</a>).
-        The following tools are envisioned for the first edition:</p>
-        <ul class="uk-list uk-list-bullet">
-            <li><b>All task areas:</b> RAG systems / chatbots indexing the relevant
-            document collections (hosted at OpenWebSearch.eu) and a subset of internal
-            documents; a mock mail backend for sending e-mails to fake addresses of the
-            administrative staff; and any locally available tools participants choose to
-            integrate via the prescribed agent protocol.</li>
-            <li><b>Business travel and privately advanced costs:</b> a BPMN endpoint
-            exposing the modeled university workflows, and a mock interface to the
-            university's SAP-based travel and reimbursement portal for filling in and
-            submitting forms without touching the live system.</li>
-            <li><b>Internal procurement:</b> a RAG endpoint over the university's
-            internal product catalog; where appropriate, public product catalogs may
-            additionally be consulted via web-search tools.</li>
-        </ul>
+        <h3 class="uk-margin-small-top">Execution environment</h3>
+        <p>Submissions run in a sandbox without outbound network access, so external
+        LLM&nbsp;APIs cannot be called. We host one model and expose it through a
+        REST&nbsp;API inside the environment. For this edition it is <b>gpt-oss-20b</b>.
+        Every team uses the same model, and packaging your own weights is not permitted, so
+        that results reflect the agent design rather than available compute.</p>
+        <p>Each run gets <b>4 CPU cores</b> and <b>20&nbsp;GB of RAM</b>, plus access to the
+        hosted model. The time limit is <b>5 minutes per case</b> and <b>4 hours</b> for a
+        complete run. We provide no agent tools; you may ship your own inside your image.</p>
         <p class="uk-text-meta">The cases are fully anonymized. No personally identifiable
         information (names, mail addresses, phone numbers) of university staff is contained
-        in the collection or the mock backends.</p>
+        in the collection.</p>
 
         <h3 class="uk-margin-small-top">Input / Output format</h3>
         <p><b>Input:</b> a task description (a user request, optionally with attached
@@ -320,17 +310,19 @@
             <li><b>Register on TIRA.</b> <a href="https://www.tira.io/signup" target="_blank" rel="noopener">Sign up on TIRA</a>,
             then <a href="https://www.tira.io/task-overview/uniagent-2026/" target="_blank" rel="noopener">register your team to the UniAgent&nbsp;2026 task</a>.
             The form asks for a team name (up to 30&nbsp;characters), your email,
-            affiliation, country, and the other team members. You may enter any subset of the three
-            <a href="#task">sub-tasks</a> and revise that choice later.</li>
-            <li><b>Develop your agent</b> against the demo dataset on TIRA and the example
-            topic shown above (see <a href="#data">Data &amp; Tools</a>). Tools are accessed
-            via the prescribed AI agent protocol. You may also integrate your own local
-            tools.</li>
+            affiliation, country, and the other team members. You may enter either of the
+            two <a href="#task">sub-tasks</a> and revise that choice later.</li>
+            <li><b>Develop your agent</b> against the public part of the data and the demo
+            dataset (see <a href="#data">Data &amp; Tools</a>). You build retrieval on the
+            mounted crawl and CIFF&nbsp;index, and you may ship your own tools inside your
+            image.</li>
             <li><b>Submit your runs</b> as code (a Docker image) via TIRA, in the
-            prescribed formats together with the agent behavior log. Validation tools are
-            provided to check submission validity.</li>
+            prescribed formats together with the agent behavior log. You may submit and run
+            as often as you like during development. For the official evaluation, each team
+            submits up to <b>five runs</b>, which you select yourself before any results are
+            known.</li>
             <li><b>Results and findings</b> are presented at the CIKM&nbsp;2026 AnalytiCup
-            session; participating teams are invited to contribute to the overview paper.</li>
+            session. You describe your approach in a notebook paper.</li>
         </ol>
 
 
@@ -342,7 +334,7 @@
         acceptance.</p>
         <table class="uk-table uk-table-divider uk-table-small uk-table-hover">
             <tbody>
-                <tr><td><b>July 2026</b></td><td>Launch; registration opens; a small demo dataset published on TIRA; tools to follow.</td></tr>
+                <tr><td><b>July 2026</b></td><td>Launch; registration opens; a small demo dataset published on TIRA.</td></tr>
                 <tr><td><b>Early September 2026</b></td><td>Team formation deadline.</td></tr>
                 <tr><td><b>Mid-October 2026</b></td><td>Submission deadline for system runs.</td></tr>
                 <tr><td><b>Late October 2026</b></td><td>Evaluation period (expert judgments and automatic measures).</td></tr>
