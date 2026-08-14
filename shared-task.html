@@ -192,16 +192,13 @@
         </ul>
 
         <h3 class="uk-margin-small-top">Sub-tasks</h3>
-        <p>Participants may address any of three sub-tasks, each taking the task
-        description as input. The sub-tasks are <b>independent</b>: you may enter any
-        subset. A Solving submission, for example, requires no prior Retrieval or
-        Simulation submission.</p>
+        <p>Participants may address either of two sub-tasks, each taking the task
+        description as input. The sub-tasks are <b>independent</b>: entering one does not
+        require the other. A Solving submission needs no prior Retrieval submission.</p>
         <ol class="uk-list uk-list-decimal">
             <li><b>Retrieval</b>: retrieve documents relevant to the current
             state and task progress (focus on recall); output the run and a log of
             reasoning tokens.</li>
-            <li><b>Simulation</b>: generate a plan of action without
-            executing it; output the plan, retrieved documents, and reasoning tokens.</li>
             <li><b>Solving</b>: build a working agent that synthesizes a full
             solution; output the solution and a log of actions, retrieved documents, and
             reasoning tokens.</li>
@@ -293,12 +290,7 @@
             <li><b>(1) Retrieval.</b> Retrieved documents are judged against the set of
             sources needed to make progress on the task, using recall-oriented IR
             measures (Recall@k, MAP, nDCG). Recall is the primary measure.</li>
-            <li><b>(2) Simulation.</b> The proposed plan is compared against the reference
-            process (modeled, where available, as a BPMN workflow): we score the coverage
-            and precision of the plan's steps, the correctness of their ordering, and
-            whether the required decision points and documents are accounted for. The
-            supporting retrieved documents are scored as in the Retrieval sub-task.</li>
-            <li><b>(3) Solving.</b> The synthesized solution is scored on <i>task
+            <li><b>(2) Solving.</b> The synthesized solution is scored on <i>task
             success</i>, a binary criterion. A run succeeds if it produces the minimal
             solution a peer would accept, such as a reimbursement application with valid
             receipts. Non-successful runs are then ranked more finely by the number and
