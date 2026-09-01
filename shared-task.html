@@ -177,18 +177,18 @@
         </blockquote>
 
         <h3 class="uk-margin-small-top">Topic areas</h3>
-        <p>The first edition focuses on three administrative task areas:</p>
+        <p>The first edition focuses on four administrative task areas:</p>
         <ul class="uk-list uk-list-bullet">
             <li><b>Business travel</b>: travel permit requests, compliance
             checking (e.g., hotel rate limits, private extensions), and reimbursement
             processing. Topics are derived from labeled mail exchanges between
             administrative staff and university staff.</li>
             <li><b>Privately advanced costs</b>: reimbursement of
-            out-of-pocket expenses paid by university staff. The process is modeled as a
-            BPMN workflow and provided to participants.</li>
+            out-of-pocket expenses paid by university staff.</li>
             <li><b>Internal procurement</b>: identification, selection, and
-            ordering of goods through the university's procurement system, supported by
-            a dedicated product-search tool.</li>
+            ordering of goods through the university's procurement system.</li>
+            <li><b>Administration of student employees</b>: the paperwork
+            around employing and administering student assistants.</li>
         </ul>
 
         <h3 class="uk-margin-small-top">Sub-tasks</h3>
@@ -226,23 +226,32 @@
         <p>The document collection is a crawl of the University of Kassel's web pages and
         other sources, compiled with the
         <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
-        project. We mount the crawl and a CIFF&nbsp;index directly into your container, so
-        you build retrieval on top of them and keep full control over index and ranking.
-        First-edition tasks have sufficient English documentation.</p>
+        project. We mount the crawl into your container as pre-processed documents with
+        the main content already extracted, so every team starts from the same collection.
+        We prescribe <b>no index</b>: indexing the collection from scratch takes under a
+        minute at this scale, so you bring your own retrieval pipeline or search the
+        documents directly, and keep full control over index and ranking.</p>
+        <p>Documents are plain text files or text-based PDFs. The collection currently
+        holds no images, so no OCR or vision component is needed. The underlying material
+        is largely German; teams may translate as needed.</p>
 
         <h3 class="uk-margin-small-top">Topics</h3>
-        <p>We compile a collection of 50&nbsp;topics across the three task areas above,
+        <p>We compile a collection of topics across the four task areas above,
         drawing on the hands-on expertise of administrative staff trained in the
         University of Kassel's &ldquo;AI&nbsp;FrAIdays&rdquo; seminar series. The topics
         are fully anonymized. Each topic
         consists of a user query (with any attached documents), an expected output
         following the prescribed process, and annotations for query type, complexity,
         and rule area.</p>
-        <p>A <b>public part</b> is released for development, including the relevant
-        documents and the solutions for that part, together with a set of synthetic cases.
-        A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA lets
-        you check that your submission runs. For the Retrieval sub-task, queries come from
-        us and from agent solutions.</p>
+        <p>A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA
+        shows the topic format and lets you check that your submission runs. It is
+        deliberately too small to train on or to measure agent quality. A larger
+        <b>public development dataset</b> adds synthetic cases with reference solutions to
+        develop against. For the Retrieval sub-task we also provide <b>spot-check
+        datasets</b> in German and English, built from our public crawl, with queries
+        synthesized against a target document and first-stage retrieval baselines; as
+        queries and judgments are both synthetic, these confirm that a system works rather
+        than evaluate how well it works.</p>
         <p>The <b>evaluation topics</b> stay inside <b>TIRA</b> and are not released. You
         submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
         data. You receive the evaluation measures, never the evaluation topics or the gold
@@ -251,10 +260,10 @@
 
         <h3 class="uk-margin-small-top">Execution environment</h3>
         <p>Submissions run in a sandbox without outbound network access, so external
-        LLM&nbsp;APIs cannot be called. We host one model and expose it through a
-        REST&nbsp;API inside the environment. For this edition it is <b>gpt-oss-20b</b>.
-        Every team uses the same model, and packaging your own weights is not permitted, so
-        that results reflect the agent design rather than available compute.</p>
+        LLM&nbsp;APIs cannot be called. We host a small set of open-weight models, among
+        them <b>gpt-oss-20b</b>, and expose them through a REST&nbsp;API inside the
+        environment. Packaging your own weights is not permitted, so that results reflect
+        the agent design rather than available compute.</p>
         <p>Each run gets <b>4 CPU cores</b> and <b>20&nbsp;GB of RAM</b>, plus access to the
         hosted model. The time limit is <b>5 minutes per case</b> and <b>4 hours</b> for a
         complete run. We supply the environment, and you supply the tools: your agent
@@ -315,13 +324,20 @@
             two <a href="#task">sub-tasks</a> and revise that choice later.</li>
             <li><b>Develop your agent</b> against the public part of the data and the demo
             dataset (see <a href="#data">Data &amp; Tools</a>). You build retrieval on the
-            mounted crawl and CIFF&nbsp;index, and you may ship your own tools inside your
+            mounted crawl with your own pipeline, and you may ship your own tools inside your
             image.</li>
             <li><b>Submit your runs</b> as code (a Docker image) via TIRA, in the
             prescribed formats together with the agent behavior log. You may submit and run
             as often as you like during development. For the official evaluation, each team
             submits up to <b>five runs</b>, which you select yourself before any results are
             known.</li>
+            <li><b>Submit a client-side cache</b> with every official run, recording the
+            model and tool calls that produced it: prompts, responses, and retrieved sources,
+            verbatim. This is more than the reasoning-token log. We rank runs by success, and
+            we also check whether that success was reached for the right reasons, which needs
+            the full trace. Without a cache, a run cannot be told apart from a zero-shot
+            prediction. This follows the caching approach used by the TREC&nbsp;AutoJudge
+            track.</li>
             <li><b>Results and findings</b> are presented at the CIKM&nbsp;2026 AnalytiCup
             session. You describe your approach in a notebook paper.</li>
         </ol>
@@ -331,16 +347,14 @@
         SECTION Important Dates
         -->
         <h2><a id="dates"></a>Important Dates</h2>
-        <p class="uk-text-meta">All dates are tentative and will be finalized upon
-        acceptance.</p>
         <table class="uk-table uk-table-divider uk-table-small uk-table-hover">
             <tbody>
-                <tr><td><b>July 2026</b></td><td>Launch; registration opens; a small demo dataset published on TIRA.</td></tr>
-                <tr><td><b>Early September 2026</b></td><td>Team formation deadline.</td></tr>
-                <tr><td><b>Mid-October 2026</b></td><td>Submission deadline for system runs.</td></tr>
-                <tr><td><b>Late October 2026</b></td><td>Evaluation period (expert judgments and automatic measures).</td></tr>
-                <tr><td><b>Early November 2026</b></td><td>Notification of results.</td></tr>
-                <tr><td><b>8 November 2026</b></td><td>Presentation at the CIKM&nbsp;2026 AnalytiCup (main conference 9 to 11&nbsp;November).</td></tr>
+                <tr><td><b>now</b></td><td>Registration open; demo dataset and public development data available on TIRA.</td></tr>
+                <tr><td><b>25 September 2026</b></td><td>Registration closes.</td></tr>
+                <tr><td><b>15 October 2026</b></td><td>Run submission deadline.</td></tr>
+                <tr><td><b>3 November 2026</b></td><td>Notification of results.</td></tr>
+                <tr><td><b>TBD</b></td><td>Notebook paper submission.</td></tr>
+                <tr><td><b>8 November 2026</b></td><td>UniAgent session at the CIKM&nbsp;2026 AnalytiCup (main conference 9 to 11&nbsp;November).</td></tr>
             </tbody>
         </table>
 
