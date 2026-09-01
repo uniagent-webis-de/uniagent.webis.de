@@ -231,9 +231,8 @@
         We prescribe <b>no index</b>: indexing the collection from scratch takes under a
         minute at this scale, so you bring your own retrieval pipeline or search the
         documents directly, and keep full control over index and ranking.</p>
-        <p>Documents are plain text files or text-based PDFs. The collection currently
-        holds no images, so no OCR or vision component is needed. The underlying material
-        is largely German; teams may translate as needed.</p>
+        <p>The mounted collection is plain text, so no parsing is needed on your side.
+        The underlying material is largely German; teams may translate as needed.</p>
 
         <h3 class="uk-margin-small-top">Topics</h3>
         <p>We compile a collection of topics across the four task areas above,
@@ -243,6 +242,11 @@
         consists of a user query (with any attached documents), an expected output
         following the prescribed process, and annotations for query type, complexity,
         and rule area.</p>
+        <p>The <b>case documents</b> attached to a topic &mdash; forms, receipts, invoices,
+        and correspondence &mdash; are text-based PDFs, and your agent has to parse them.
+        This is unlike the document collection above, which arrives already extracted.
+        Image-only documents such as scans and photos are excluded, so no OCR or vision
+        component is needed.</p>
         <p>A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA
         shows the topic format and lets you check that your submission runs. It is
         deliberately too small to train on or to measure agent quality. A larger
