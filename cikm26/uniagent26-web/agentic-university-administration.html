@@ -289,12 +289,11 @@ used by the TREC&nbsp;AutoJudge track.</p>
 <a href="index.html#index-participation">rendition overview</a>.</p>
 
 <h2 id="evaluation" class="uk-margin-large-top">Evaluation</h2>
-        <p>We combine manual and automatic evaluation. Each sub-task is scored on the same
-        gold topics, with criteria matched to its required output:</p>
+        <p>We combine manual and automatic evaluation.</p>
         <ul class="uk-list uk-list-bullet">
-            <li><b>(1) Retrieval.</b> Retrieved documents are judged against the set of
-            sources needed to make progress on the task, using recall-oriented IR
-            measures (Recall@k, MAP, nDCG). Recall is the primary measure.</li>
+            <li><b>Task 1 (Retrieval)</b>: The retrieval runs are evaluated against classical qrel-style relevance judgments that allow to evaluate diverse IR measures.
+                Participants can decide which measure they want to focus on.
+            </li>
             <li><b>(2) Solving.</b> The synthesized solution is scored on <i>task
             success</i>, a binary criterion. A run succeeds if it produces the minimal
             solution a peer would accept, such as a reimbursement application with valid
