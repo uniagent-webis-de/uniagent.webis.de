@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>UniAgent at CIKM 2026 - Agentic AI in University Administration</title>
+    <meta charset="utf-8">
+    <meta name="description" content="A shared task on agentic AI in university administration, part of the CIKM 2026 AnalytiCup: build agents that solve standardized administrative tasks under controlled tool access and expert-judged reference solutions.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="copyright" content="&copy; 2026 Webis">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="/css/style.css?1">
+</head>
+<body class="uk-offcanvas-content page-shared-tasks">
+<script src="https://assets.webis.de/js/thirdparty/uikit/uikit.min.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/uikit/uikit-icons.min.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/jquery/jquery.min.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/prettify.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/lang-proto.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/lang-wiki.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/lang-yaml.js"></script>
+<script src="https://assets.webis.de/js/code-prettify/lang-cmd.js"></script>
+
+<div id="offcanvas-nav" class="mobile-nav" data-uk-offcanvas="overlay: true; flip: true;">
+    <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+
+        <!-- Off-canvas mobile navigation -->
+        <nav class="uk-margin-large-top">
+            <ul class="uk-nav uk-nav-primary uk-nav-parent-icon" data-uk-nav>
+                <li class="uk-active">
+                    <a href="/shared-tasks.html">Shared Tasks</a>
+                </li>
+                <li>
+                    <a href="/events.html">Events</a>
+                </li>
+                <li>
+                    <a href="/data.html">Data</a>
+                </li>
+                <li>
+                    <a href="/publications.html">Publications</a>
+                </li>
+                <li>
+                    <a href="/organization.html">Organization</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="uk-background-secondary global-nav" data-uk-sticky>
+    <nav class="uk-navbar-container uk-navbar-transparent uk-container uk-light" data-uk-navbar="mode: click">
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="/"><img src="/img/uniagent-logo.svg" alt="UniAgent Logo" class="uk-logo" style="height: 3rem"> UniAgent</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile navigation toggle button -->
+        <div class="uk-navbar-right mobile-nav">
+            <button class="uk-button uk-navbar-item uk-light uk-button-large" type="button" data-uk-icon="icon: menu"
+                    data-uk-toggle="target: #offcanvas-nav"></button>
+        </div>
+
+        <!-- Desktop navigation -->
+        <div class="uk-navbar-right desktop-nav">
+            <ul class="uk-navbar-nav">
+                <li class="nav-group-start uk-active">
+                    <a href="/shared-tasks.html">Shared Tasks</a>
+                </li>
+                <li>
+                    <a href="/events.html">Events</a>
+                </li>
+                <li class="uk-parent">
+                    <a href="/data.html">Data</a>
+                </li>
+                <li class="nav-group-start">
+                    <a href="/publications.html">Publications</a>
+                </li>
+                <li>
+                    <a href="/organization.html">Organization</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div data-uk-height-viewport="expand: true">
+<nav class="uk-container">
+<ul class="uk-breadcrumb">
+<li><a href="../../index.html">UniAgent</a></li>
+<li><a href="../../shared-tasks.html">Shared Tasks</a></li>
+<li class="uk-disabled"><a href="#">Agentic AI in University Administration 2026</a></li>
+</ul>
+</nav>
+
+<main class="uk-section uk-section-default">
+<div class="uk-container">
+<div class="uk-container uk-margin-small">
+<h1 class="uk-margin-remove-top">Agentic AI in University Administration 2026</h1>
+<ul class="uk-list">
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#synopsis">Synopsis</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#important-dates">Important Dates</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#task">Task</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#data">Data &amp; Tools</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#output-format">Output Format</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#submission">Submission</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#evaluation">Evaluation</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#related-work">Related Work</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#task-committee">Task Committee</a></li>
+</ul>
+</div>
+
+<div class="uk-container uk-margin-medium">
+<h2 id="synopsis">Synopsis</h2>
+<p>The task consists of two sub-tasks:</p>
+<ul>
+<li>Sub-Task 1 &mdash; <b>Retrieval</b>: given a task from a university administration,
+retrieve the documents relevant to the current state and task progress (focus on recall);
+output the run and a log of reasoning tokens.</li>
+<li>Sub-Task 2 &mdash; <b>Solving</b>: build a working agent that synthesizes a full
+solution; output the solution and a log of actions, retrieved documents, and reasoning
+tokens.</li>
+<li>Communication: [<a href="https://www.tira.io/c/uniagent">UniAgent forum on TIRA</a>,
+<a href="mailto:uniagent@lists.its.uni-kassel.de">organizers</a>]</li>
+<li>Submission: [<a href="#submission">runs via TIRA</a>,
+<a href="index.html#index-paper-submission">notebook papers</a>]</li>
+</ul>
+<p>The sub-tasks are <b>independent</b>: entering one does not require the other. A
+solving submission needs no prior retrieval submission.</p>
+
+<a class="uk-button uk-button-primary" href="https://www.tira.io/task-overview/uniagent-2026/">Register for participation</a>
+<a class="uk-button uk-button-primary" href="https://www.tira.io/c/uniagent">Join the UniAgent forum on TIRA</a>
+
+<h2 id="important-dates" class="uk-margin-large-top">Important Dates</h2>
+<table class="uk-table uk-table-divider uk-table-small">
+<thead>
+<tr><th>Event</th><th>Date</th></tr>
+</thead>
+<tbody>
+<tr><td>Registration Opens; demo dataset and public development data available on TIRA</td><td><b>now</b></td></tr>
+<tr><td>Registration Closes</td><td>25 September 2026</td></tr>
+<tr><td>Run Submission</td><td>15 October 2026</td></tr>
+<tr><td>Notification of Results</td><td>3 November 2026</td></tr>
+<tr><td>Notebook Paper Submission</td><td>TBD</td></tr>
+<tr><td>Presentation at the CIKM&nbsp;2026 AnalytiCup</td><td>8 November 2026</td></tr>
+</tbody>
+</table>
+<p>All times are in Anywhere on Earth (AoE) timezone. The CIKM&nbsp;2026 main conference
+runs from 9 to 11&nbsp;November&nbsp;2026.</p>
+
+<h2 id="task" class="uk-margin-large-top">Task</h2>
+        <p>In its most generic form, the class of tasks we study can be described as
+        follows:</p>
+
+        <blockquote class="uk-text-meta">
+        Given a digital environment and a problem or task (the objective) that is
+        typically tackled by a person acting in the environment, develop an intelligent
+        agent that achieves the objective on the person's behalf by planning and
+        executing the necessary steps in accordance with the environment's codes of
+        conduct.
+        </blockquote>
+
+        
+
+<h3 class="uk-margin-small-top">Topic areas</h3>
+        <p>The first edition focuses on four administrative task areas:</p>
+        <ul class="uk-list uk-list-bullet">
+            <li><b>Business travel</b>: travel permit requests, compliance
+            checking (e.g., hotel rate limits, private extensions), and reimbursement
+            processing. Topics are derived from labeled mail exchanges between
+            administrative staff and university staff.</li>
+            <li><b>Privately advanced costs</b>: reimbursement of
+            out-of-pocket expenses paid by university staff.</li>
+            <li><b>Internal procurement</b>: identification, selection, and
+            ordering of goods through the university's procurement system.</li>
+            <li><b>Administration of student employees</b>: the paperwork
+            around employing and administering student assistants.</li>
+        </ul>
+
+        
+
+<h3 class="uk-margin-small-top">Sub-tasks</h3>
+        <p>Participants may address either of two sub-tasks, each taking the task
+        description as input. The sub-tasks are <b>independent</b>: entering one does not
+        require the other. A Solving submission needs no prior Retrieval submission.</p>
+        <ol class="uk-list uk-list-decimal">
+            <li><b>Retrieval</b>: retrieve documents relevant to the current
+            state and task progress (focus on recall); output the run and a log of
+            reasoning tokens.</li>
+            <li><b>Solving</b>: build a working agent that synthesizes a full
+            solution; output the solution and a log of actions, retrieved documents, and
+            reasoning tokens.</li>
+        </ol>
+
+        
+
+<h3 class="uk-margin-small-top">Example topic</h3>
+        <figure class="uk-margin">
+            <img src="/img/example-topic.png" style="max-width:380px;width:100%;border:1px solid #e5e5e5;border-radius:3px;"
+                 alt="Example topic for travel reimbursement: an agent receives the travel regulations and BPMN reimbursement workflow, then processes a conference-trip reimbursement request with attached receipts (train, hotel, registration), producing the steps check, fill, and submit.">
+            <figcaption class="uk-text-meta uk-margin-small-top">Example topic for travel
+            reimbursement: a user query with attached documents, the expected agent output
+            following the prescribed process, and annotations for query type, complexity,
+            and rule area.</figcaption>
+        </figure>
+
+<h2 id="data" class="uk-margin-large-top">Data &amp; Tools</h2>
+        <p>The environment comprises a document collection, a set of topics, and a hosted
+        language model.</p>
+
+        
+
+<h3 class="uk-margin-small-top">Document collection</h3>
+        <p>The document collection is a crawl of the University of Kassel's web pages and
+        other sources, compiled with the
+        <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
+        project. We mount the crawl into your container as pre-processed documents with
+        the main content already extracted, so every team starts from the same collection.
+        We prescribe <b>no index</b>: indexing the collection from scratch takes under a
+        minute at this scale, so you bring your own retrieval pipeline or search the
+        documents directly, and keep full control over index and ranking.</p>
+        <p>The mounted collection is plain text, so no parsing is needed on your side.
+        The underlying material is largely German; teams may translate as needed.</p>
+
+        
+
+<h3 class="uk-margin-small-top">Topics</h3>
+        <p>We compile a collection of topics across the four task areas above,
+        drawing on the hands-on expertise of administrative staff trained in the
+        University of Kassel's &ldquo;AI&nbsp;FrAIdays&rdquo; seminar series. The topics
+        are fully anonymized. Each topic
+        consists of a user query (with any attached documents), an expected output
+        following the prescribed process, and annotations for query type, complexity,
+        and rule area.</p>
+        <p>The <b>case documents</b> attached to a topic &mdash; forms, receipts, invoices,
+        and correspondence &mdash; are text-based PDFs, and your agent has to parse them.
+        This is unlike the document collection above, which arrives already extracted.
+        Image-only documents such as scans and photos are excluded, so no OCR or vision
+        component is needed.</p>
+        <p>A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA
+        shows the topic format and lets you check that your submission runs. It is
+        deliberately too small to train on or to measure agent quality. A larger
+        <b>public development dataset</b> adds synthetic cases with reference solutions to
+        develop against. For the Retrieval sub-task we also provide <b>spot-check
+        datasets</b> in German and English, built from our public crawl, with queries
+        synthesized against a target document and first-stage retrieval baselines; as
+        queries and judgments are both synthetic, these confirm that a system works rather
+        than evaluate how well it works.</p>
+        <p>The <b>evaluation topics</b> stay inside <b>TIRA</b> and are not released. You
+        submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
+        data. You receive the evaluation measures, never the evaluation topics or the gold
+        references. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
+        participation guide</a> for details.</p>
+
+        
+
+<h3 class="uk-margin-small-top">Execution environment</h3>
+        <p>Submissions run in a sandbox without outbound network access, so external
+        LLM&nbsp;APIs cannot be called. We host a small set of open-weight models, among
+        them <b>gpt-oss-20b</b>, and expose them through a REST&nbsp;API inside the
+        environment. Packaging your own weights is not permitted, so that results reflect
+        the agent design rather than available compute.</p>
+        <p>Each run gets <b>4 CPU cores</b> and <b>20&nbsp;GB of RAM</b>, plus access to the
+        hosted model. The time limit is <b>5 minutes per case</b> and <b>4 hours</b> for a
+        complete run. We supply the environment, and you supply the tools: your agent
+        brings whatever tools it needs inside your image.</p>
+        <p class="uk-text-meta">The cases are fully anonymized. No personally identifiable
+        information (names, mail addresses, phone numbers) of university staff is contained
+        in the collection.</p>
+
+        
+
+<h2 id="output-format" class="uk-margin-large-top">Output Format</h2>
+<p><b>Input:</b> a task description (a user request, optionally with attached
+        documents). <b>Output</b> depends on the chosen sub-task and follows prescribed
+        formats: retrieved documents in the TREC run format, action logs in a common
+        protocol format, and reasoning tokens as plain text. Validation tools are
+        provided.</p>
+
+<h2 id="submission" class="uk-margin-large-top">Submission</h2>
+<p>Submissions are handled via <a href="https://www.tira.io/">TIRA</a>, the
+shared task&rsquo;s reproducibility platform. You submit your agent as code (a Docker
+image) and may submit and run as often as you like during development. For the official
+evaluation, each team submits up to <b>five runs</b>, which you select yourself before any
+results are known. Validation tools check submission format and completeness.</p>
+<p><b>Submit a client-side cache</b> with every official run, recording the model and tool
+calls that produced it: prompts, responses, and retrieved sources, verbatim. This is more
+than the reasoning-token log. We rank runs by success, and we also check whether that
+success was reached for the right reasons, which needs the full trace. Without a cache, a
+run cannot be told apart from a zero-shot prediction. This follows the caching approach
+used by the TREC&nbsp;AutoJudge track.</p>
+<p>The full participation process is described on the
+<a href="index.html#index-participation">rendition overview</a>.</p>
+
+<h2 id="evaluation" class="uk-margin-large-top">Evaluation</h2>
+        <p>We combine manual and automatic evaluation. Each sub-task is scored on the same
+        gold topics, with criteria matched to its required output:</p>
+        <ul class="uk-list uk-list-bullet">
+            <li><b>(1) Retrieval.</b> Retrieved documents are judged against the set of
+            sources needed to make progress on the task, using recall-oriented IR
+            measures (Recall@k, MAP, nDCG). Recall is the primary measure.</li>
+            <li><b>(2) Solving.</b> The synthesized solution is scored on <i>task
+            success</i>, a binary criterion. A run succeeds if it produces the minimal
+            solution a peer would accept, such as a reimbursement application with valid
+            receipts. Non-successful runs are then ranked more finely by the number and
+            severity of their errors: rule violations, missing receipts, or incorrect form
+            fields. The agent behavior log additionally yields tool-use accuracy
+            (precision and recall of tool calls) and retrieval quality. A qualitative
+            audit finally verifies that the solution was reached for the right
+            reasons.</li>
+        </ul>
+        <p>Across all sub-tasks we also report <b>efficiency</b> measures: manual
+        task-completion time (a trained-human baseline), runtime, and environmental
+        impact, for which we investigate the TIREx tracker. Judges compare solutions
+        against expert reference solutions, ideally via a diff visualization; trained
+        laypeople suffice for most topics, with regulatory edge cases referred to domain
+        experts. Automatic LLM-as-judge measures will be validated against the human
+        reference-based judgments on a sample before being used to rank systems. The
+        organizers carry out the necessary judgments and assessments.</p>
+
+<h2 id="related-work" class="uk-margin-large-top">Related Work</h2>
+        <p>This task builds on and complements prior community evaluations:</p>
+        <ul class="uk-list uk-list-bullet">
+            <li><b>TREC Enterprise tracks (2005 to 2008).</b> We revisit the
+            enterprise setting with a more holistic aim: rather than retrieving
+            information for a query, we automate achieving the objective, of which
+            retrieval is a sub-task.</li>
+            <li><b>TREC Million LLM track (2025 to 2026).</b> Retrieving expert LLMs
+            for specific tasks complements ours, as an agent may consult such an expert
+            while executing its plan.</li>
+            <li><b>TREC RAG track (2024 to 2026).</b> A RAG response is a synthesized
+            solution integrating retrieval, but does not include tool calling or richer
+            environment interactions.</li>
+            <li><b>TREC AutoJudge track (2026)</b> and the <b>CLEF</b> evaluation labs
+            (e.g., Touch&eacute;, LongEval), with which integration and shared expertise
+            are foreseen.</li>
+        </ul>
+
+<h2 id="task-committee" class="uk-margin-large-top">Task Committee</h2>
+<!-- TODO: replace the remaining silhouette placeholders as photos become available. -->
+<div data-uk-grid class="uk-grid uk-grid-match uk-grid-small thumbnail-card-grid">
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0003-2451-0665" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/potthast.jpg" alt="Martin Potthast"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Martin Potthast</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI, ScaDS.AI &middot; Track coordinator</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-kassel.svg"
+                     alt="Universit&auml;t Kassel logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0002-5503-0341" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/kruschwitz.jpg" alt="Udo Kruschwitz"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Udo Kruschwitz</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Regensburg &middot; Enterprise search and assessment design</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-regensburg.svg"
+                     alt="Universit&auml;t Regensburg logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0003-3566-5507" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/granitzer.jpg" alt="Michael Granitzer"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Michael Granitzer</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau &middot; Collection, crawling, RAG infrastructure (OpenWebSearch.eu)</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-passau.svg"
+                     alt="Universit&auml;t Passau logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0009-0003-1747-5643" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/dinzinger.jpg" alt="Michael Dinzinger"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Michael Dinzinger</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau &middot; Collection, crawling, RAG infrastructure (OpenWebSearch.eu)</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-passau.svg"
+                     alt="Universit&auml;t Passau logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://www.fim.uni-passau.de/en/data-science/team" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/silhouette-male.jpg" alt="Hai Dang Dang"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Hai Dang Dang</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau &middot; Crawling and document collection (OpenWebSearch.eu)</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-passau.svg"
+                     alt="Universit&auml;t Passau logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0002-2888-4202" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/devries.jpg" alt="Arjen P. de Vries"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Arjen P. de Vries</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Radboud University &middot; Evaluation methodology</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-radboud-university.svg"
+                     alt="Radboud University logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0001-9578-7157" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/scells.jpg" alt="Harrisen Scells"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Harrisen Scells</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of T&uuml;bingen &middot; Tooling and baselines</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-tuebingen.svg"
+                     alt="Universit&auml;t T&uuml;bingen logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0002-1003-981X" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/froebe.jpg" alt="Maik Fr&ouml;be"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Maik Fr&ouml;be</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Friedrich-Schiller-Universit&auml;t Jena &middot; Reproducibility infrastructure (TIRA)</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-friedrich-schiller-university-jena.svg"
+                     alt="Friedrich Schiller University Jena logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0001-5446-8328" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/parry.jpg" alt="Andrew Parry"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Andrew Parry</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Bloomberg LP &middot; Measures and analysis</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0009-0008-4868-4882" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/ruth.jpg" alt="Simon Ruth"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Simon Ruth</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI &middot; Topic curation, data labeling, mock tool backends</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-kassel.svg"
+                     alt="Universit&auml;t Kassel logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="/organization.html#organizing-committee" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/silhouette-female.jpg" alt="Clara Erner"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Clara Erner</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel &middot; Topic curation, data labeling, mock tool backends</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-kassel.svg"
+                     alt="Universit&auml;t Kassel logo">
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</div>
+
+<footer class="uk-section uk-section-muted footer-section">
+    <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top">
+            <div class="uk-width-1-5@s">
+              <!-- links specific to a service -->
+            </div>
+            <div class="uk-width-expand uk-visible@s"></div>
+            <div>
+              &copy; 2026 <a href="https://webis.de/">Webis Group</a> <span class="uk-padding-small">&bullet;</span>
+              <a href="https://github.com/webis-de"><span data-uk-icon="icon: github; ratio:0.8"></span></a>
+              <a href="https://twitter.com/webis_de"><span data-uk-icon="icon: twitter; ratio:0.9"></span></a>
+              <a href="https://www.youtube.com/webis"><span data-uk-icon="icon: youtube; ratio:0.9"></span></a> <span class="uk-padding-small">&bullet;</span>
+              <a href="/organization.html">Contact</a> <span class="uk-padding-small">&bullet;</span>
+              <a href="https://webis.de/legal.html">Impressum / Terms / Privacy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    UIkit.util.ready(() => {
+        PR.prettyPrint();
+
+        const nav = UIkit.util.$(".global-nav");
+        const navHeight = UIkit.util.height(nav);
+
+        // correct scroll offset due to fixed navigation after page load
+        let fixScrollHeight = () => {
+            if (location.hash === "" || !UIkit.util.$(location.hash)) {
+                return;
+            }
+
+            const pos = document.documentElement.scrollTop;
+            const offset = UIkit.util.offset(UIkit.util.$(location.hash));
+
+            if (pos > navHeight * .8 && offset) {
+                document.documentElement.scrollTop = offset.top - navHeight - 20;
+            }
+        };
+
+        window.addEventListener("hashchange", fixScrollHeight, false);
+        setTimeout(fixScrollHeight, 100);
+    });
+</script>
+</body>
+</html>

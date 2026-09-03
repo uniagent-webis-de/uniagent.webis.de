@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>UniAgent at INLG 2027 - Agent in the Loop</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Agent in the Loop, a shared task proposed for INLG 2027: participants build agents that summarize the research artifacts of other shared tasks into the textual and tabular summaries typically found in overview papers.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="copyright" content="&copy; 2026 Webis">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="/css/style.css?1">
+</head>
+<body class="uk-offcanvas-content page-shared-tasks">
+<script src="https://assets.webis.de/js/thirdparty/uikit/uikit.min.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/uikit/uikit-icons.min.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/jquery/jquery.min.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/prettify.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/lang-proto.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/lang-wiki.js"></script>
+<script src="https://assets.webis.de/js/thirdparty/code-prettify/lang-yaml.js"></script>
+<script src="https://assets.webis.de/js/code-prettify/lang-cmd.js"></script>
+
+<div id="offcanvas-nav" class="mobile-nav" data-uk-offcanvas="overlay: true; flip: true;">
+    <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+
+        <!-- Off-canvas mobile navigation -->
+        <nav class="uk-margin-large-top">
+            <ul class="uk-nav uk-nav-primary uk-nav-parent-icon" data-uk-nav>
+                <li class="uk-active">
+                    <a href="/shared-tasks.html">Shared Tasks</a>
+                </li>
+                <li>
+                    <a href="/events.html">Events</a>
+                </li>
+                <li>
+                    <a href="/data.html">Data</a>
+                </li>
+                <li>
+                    <a href="/publications.html">Publications</a>
+                </li>
+                <li>
+                    <a href="/organization.html">Organization</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="uk-background-secondary global-nav" data-uk-sticky>
+    <nav class="uk-navbar-container uk-navbar-transparent uk-container uk-light" data-uk-navbar="mode: click">
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="/"><img src="/img/uniagent-logo.svg" alt="UniAgent Logo" class="uk-logo" style="height: 3rem"> UniAgent</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile navigation toggle button -->
+        <div class="uk-navbar-right mobile-nav">
+            <button class="uk-button uk-navbar-item uk-light uk-button-large" type="button" data-uk-icon="icon: menu"
+                    data-uk-toggle="target: #offcanvas-nav"></button>
+        </div>
+
+        <!-- Desktop navigation -->
+        <div class="uk-navbar-right desktop-nav">
+            <ul class="uk-navbar-nav">
+                <li class="nav-group-start uk-active">
+                    <a href="/shared-tasks.html">Shared Tasks</a>
+                </li>
+                <li>
+                    <a href="/events.html">Events</a>
+                </li>
+                <li class="uk-parent">
+                    <a href="/data.html">Data</a>
+                </li>
+                <li class="nav-group-start">
+                    <a href="/publications.html">Publications</a>
+                </li>
+                <li>
+                    <a href="/organization.html">Organization</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div data-uk-height-viewport="expand: true">
+<nav class="uk-container">
+<ul class="uk-breadcrumb">
+<li><a href="../../index.html">UniAgent</a></li>
+<li><a href="../../shared-tasks.html">Shared Tasks</a></li>
+<li class="uk-disabled"><a href="#">Agent in the Loop 2027</a></li>
+</ul>
+</nav>
+
+<main class="uk-section uk-section-default">
+<div class="uk-container">
+<div class="uk-container uk-margin-small">
+<h1 class="uk-margin-remove-top">Agent in the Loop 2027</h1>
+<div class="uk-alert uk-alert-warning" data-uk-alert>
+<p>This rendition is a <b>task proposal</b>. Venue and dates are to be announced, and the
+schedule is tentative until the proposal is accepted.</p>
+</div>
+<ul class="uk-list">
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#synopsis">Synopsis</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#important-dates">Important Dates</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#motivation">Motivation</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#task">Task</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#data">Data &amp; Corpus</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#protocol">Protocol</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#evaluation">Evaluation</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#submission">Submission</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#related-work">Related Work</a></li>
+<li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#task-committee">Task Committee</a></li>
+</ul>
+</div>
+
+<div class="uk-container uk-margin-medium">
+<h2 id="synopsis">Synopsis</h2>
+        <p>Shared tasks produce standardized evaluation resources and thereby drive
+        progress across many computer science disciplines. Their epistemological
+        foundation, however, lies not in the runs they collect, but in the
+        <b>notebook</b> and <b>overview papers</b> through which participants and
+        organizers communicate and interpret their results. Agent&nbsp;in&nbsp;the&nbsp;Loop
+        is an interdisciplinary shared task that investigates how agentic AI systems
+        affect this written dialogue, and to what extent they can support it.</p>
+
+        <p>Using selected passages from overview papers as generation targets,
+        participants build agents that unify the accounts given by shared task
+        participants and synthesize the terminology used to structure the solution
+        space. Development uses a corpus built from SemEval and CLEF shared tasks and
+        their available research artifacts. To prevent training&ndash;test leakage,
+        submitted agents run on <a href="https://www.tira.io" target="_blank" rel="noopener">TIRA</a>
+        for blinded experimentation on material from <i>ongoing</i> shared tasks whose
+        notebooks and overviews have not yet been published. Generated texts are
+        assessed by volunteering organizers of these host shared tasks, independent
+        reviewers, and LLM judges from
+        TREC&nbsp;AutoJudge&nbsp;2026/27.</p>
+<ul>
+<li>Sub-tasks: textual cross-participant summaries, and structured comparison tables
+derived from them.</li>
+<li>Communication: [<a href="https://www.tira.io/c/uniagent">UniAgent forum on TIRA</a>,
+<a href="mailto:uniagent@lists.its.uni-kassel.de">organizers</a>]</li>
+<li>Submission: [<a href="#submission">software via TIRA</a>,
+<a href="index.html#index-participation">notebook papers</a>]</li>
+</ul>
+
+<a class="uk-button uk-button-primary" href="https://www.tira.io/task-overview/inlg27-agent-in-the-loop">Register for participation</a>
+
+<h2 id="important-dates" class="uk-margin-large-top">Important Dates</h2>
+        <p class="uk-text-meta">All dates are tentative and will be finalized upon
+        acceptance; some proposed dates are inconsistent in year across task phases and
+        will be corrected in a later revision.</p>
+        <table class="uk-table uk-table-divider uk-table-small uk-table-hover">
+            <tbody>
+                <tr><td><b>17&nbsp;October&nbsp;2026</b></td><td>The task is announced and the dataset is made available.</td></tr>
+                <tr><td><b>11&nbsp;January&nbsp;2027</b></td><td>The submission system opens for automatic evaluation on the test set.</td></tr>
+                <tr><td><b>17&nbsp;March&nbsp;2027</b></td><td>Software submissions close; manual evaluation begins (up to four weeks).</td></tr>
+                <tr><td><b>INLG&nbsp;2027</b></td><td>Presentation of results (venue and exact dates to be announced).</td></tr>
+            </tbody>
+        </table>
+
+<h2 id="motivation" class="uk-margin-large-top">Motivation: Revisiting the Epistemology of Shared Tasks under Generative AI</h2>
+        <p>Donna Harman (1992) characterized the first Text&nbsp;Retrieval&nbsp;Conference
+        (TREC-1) as &ldquo;a friendly evaluation forum,&rdquo; whose importance &ldquo;is
+        not to show any system to be superior, but to allow comparison across a very
+        wide variety of techniques.&rdquo; Events like TREC-1 came to be known as
+        &lsquo;shared tasks&rsquo;&mdash;a name that captures the collaborative ethos of
+        science, and shared tasks have since become a pillar of empirical research in
+        many computer science disciplines.</p>
+
+        <p>We conceive of a shared task as a moderated <b>dialogue</b> among scientists
+        that forms a collective understanding of a task and how progress on it can be
+        measured: organizers open the dialogue with a <b>(1)&nbsp;task description</b>;
+        participants reply by documenting their independently developed ideas in
+        <b>(2)&nbsp;notebook papers</b>; organizers, in turn, quantitatively analyze the
+        runs and qualitatively synthesize the analysis results and participants&rsquo;
+        contributions in an <b>(3)&nbsp;overview paper</b>; and, off-stage, attendees
+        continue the dialogue at a workshop through <b>(4)&nbsp;talks</b> and
+        <b>(5)&nbsp;discussions</b>. Much of a shared task&rsquo;s power arises from this
+        information pooling: by inviting independent solutions, it collects the
+        &ldquo;Wisdom of the Crowds,&rdquo; requiring organizers to defend only the
+        importance of the task, not to anticipate its solution space.</p>
+
+        <p>Generative AI challenges this social epistemology. If the written dialogue
+        of a shared task were removed, only its engineered artifacts would remain,
+        absent of interpretation and critical reflection&mdash;a regression to the
+        &ldquo;show and tell&rdquo; culture that Karen Sp&auml;rck&nbsp;Jones (1981)
+        criticized and that originally inspired Harman to invent the shared task.
+        At the same time, agentic AI raises new questions for collaborative knowledge
+        production: How independent are two participants&rsquo; solutions if they used
+        the same LLM? How do scientists validate, and to which extent rely on,
+        LLM-generated input? We cannot address all these questions at once, so we start
+        with the dialogic and social nature of knowledge production, using the written
+        dialogue turns between participants and organizers as points of reference for
+        understanding in what capacity generative AI can <i>support</i>, rather than
+        replace, the shared task dialogue.</p>
+
+<h2 id="task" class="uk-margin-large-top">Task</h2>
+        <p>In its most generic form, the task we study can be described as
+        follows:</p>
+
+        <blockquote class="uk-text-meta">
+        Given a collection of research artifacts produced during participation in or
+        organization of a shared task, create an agent that summarizes the scientific
+        contribution documented by those artifacts.<sup>*</sup>
+        </blockquote>
+        <p class="uk-text-meta">* Artifacts include notebooks and runs, and, if
+        available or donated by volunteers, code, datasets, models, revision
+        histories, issue tracker logs, or chat logs with teammates or bots.</p>
+
+        <p>Agents must produce two types of summaries that are typically found in
+        shared task overview papers:</p>
+        <ol class="uk-list uk-list-decimal">
+            <li><b>Textual cross-participant summaries</b> that summarize all
+            approaches submitted to the host shared task in a consistent language and
+            terminology.</li>
+            <li><b>Structured comparison tables</b> that, based on the textual
+            summaries created in Task&nbsp;1, derive a structured comparison of all
+            approaches along to-be-discovered key dimensions.</li>
+        </ol>
+
+        <p>Approaches may range from zero-shot prompting to tool-using agentic setups
+        that plan, run, and interpret task-specific analyses before generating text.
+        Submitted agents are run on TIRA against held-out artifacts and using LLMs we
+        provide, ensuring blinded experimentation and reproducible execution. The
+        resulting summaries are evaluated against the summaries we curate from the
+        corresponding overview papers, measuring how faithfully the salient scientific
+        contributions are recovered.</p>
+
+        <figure class="uk-margin">
+            <table class="uk-table uk-table-divider uk-table-small uk-table-hover uk-table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="1">&nbsp;</th>
+                        <th>Task&nbsp;1: Textual Cross-Participant Summary</th>
+                        <th colspan="3">Task&nbsp;2: Structured Comparison</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Input</b></td>
+                        <td>Notebook paper, code, and logs of Team&nbsp;A and&nbsp;B</td>
+                        <td colspan="3">Text summaries of Team&nbsp;A and Team&nbsp;B from Task&nbsp;1</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><b>Output</b></td>
+                        <td rowspan="2">Team&nbsp;A uses an LLM with retrieval on the training data
+                        for in-context learning to improve classification. Team&nbsp;B uses a CNN
+                        trained on the official training set.</td>
+                        <td><b>Team</b></td>
+                        <td><b>Model</b></td>
+                        <td><b>Training Data Usage</b></td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>LLM</td>
+                        <td>In-context learning</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>B</td>
+                        <td>CNN</td>
+                        <td>Model training</td>
+                    </tr>
+                </tbody>
+            </table>
+            <figcaption class="uk-text-meta uk-margin-small-top">Example for the two
+            subtasks: (1)&nbsp;textual cross-participant summaries, and (2)&nbsp;a
+            structured comparison derived from them.</figcaption>
+        </figure>
+
+<h2 id="data" class="uk-margin-large-top">Data &amp; Corpus</h2>
+        <p>Our datasets pair descriptions of approaches that solve a given shared task
+        with the summaries organizers wrote of those approaches. We derive them from
+        two types of artifacts released during shared tasks: <b>(1)&nbsp;notebook
+        papers</b>, which describe each approach in detail&mdash;potentially using
+        different, incompatible language for the same underlying concept&mdash;and,
+        where available, code implementing the described idea; and <b>(2)&nbsp;the
+        organizers&rsquo; overview paper</b>, which summarizes all notebook papers in a
+        unified, standardized language, typically both as a textual description per
+        approach and as a table comparing all approaches along a shared feature
+        space. These two summary types are the basis for our two subtasks: for
+        Task&nbsp;1 we extract the textual per-approach summaries from the overview
+        paper, and for Task&nbsp;2 we extract the comparison table, where one exists.</p>
+
+        <h3 class="uk-margin-small-top">Corpus construction</h3>
+        <p>We build the corpus from the proceedings of <b>SemEval</b> and <b>CLEF</b>,
+        which document each shared task together with the papers of its participants.
+        We collect the ACL&nbsp;Anthology and CEUR-WS volumes of SemEval and CLEF, one
+        volume per edition, treating their index pages as the authoritative table of
+        contents. Overview papers are paired with notebook papers through titles and
+        the section structure of a volume; for CLEF, where a lab section contains
+        exactly one overview paper, its remaining papers are treated as notebook
+        papers, while sections with several overview papers (an ambiguous case specific
+        to CEUR-WS&rsquo;s ordering) are set aside for manual review. Every PDF is
+        retrieved and its text layer converted to Markdown with
+        <a href="https://github.com/run-llama/liteparse" target="_blank" rel="noopener">liteparse</a>,
+        which preserves heading structure; figures and tables are extracted alongside
+        the text. For each notebook paper we additionally record links to
+        participants&rsquo; code, and for each overview paper the number of teams and
+        runs it reports, where stated.</p>
+
+        <h3 class="uk-margin-small-top">Preventing test data leakage</h3>
+        <p>To prevent leakage into commercial and fine-tuned models, evaluation uses
+        data from <b>ongoing</b> shared tasks for which neither notebook papers nor
+        overview papers have been published yet. For vanilla open-weights models,
+        their release date determines admissibility of a shared task as a test case
+        (i.e., it must have been organized after that date). We use
+        <a href="https://www.tira.io" target="_blank" rel="noopener">TIRA</a> to ensure
+        <a href="https://en.wikipedia.org/wiki/Blinded_experiment" target="_blank" rel="noopener">blinded
+        experimentation</a>, so that neither human nor AI participants know which
+        cases are used for evaluation: you submit your agent as working software,
+        which we deploy offline on a virtual machine we provide, without direct access
+        to the test data during the task.</p>
+
+<h2 id="protocol" class="uk-margin-large-top">Protocol</h2>
+        <p>Following prior shared tasks organized by our group at INLG (the
+        <a href="#related-work">TL;DR&nbsp;challenge</a> and the
+        <a href="#related-work">Abstractive Snippet Generation task</a>), we split the
+        shared task into three phases:</p>
+        <ol class="uk-list uk-list-decimal">
+            <li>Participants develop agents using the provided training and evaluation
+            data.</li>
+            <li>We collect submissions via TIRA, which runs the agents in a sandbox to
+            improve reproducibility.</li>
+            <li>After all submissions are collected, we run them on the private test
+            set with TIRA.</li>
+        </ol>
+        <p>This means participants submit their agent as working software that
+        generates summaries; the software is deployed offline on a virtual machine we
+        provide, and during the task the test data is never available directly, only
+        through the submission system.</p>
+
+<h2 id="evaluation" class="uk-margin-large-top">Evaluation</h2>
+        <p>We combine fully automated evaluation with evaluation involving members of
+        the organizing committees of the selected host shared tasks:</p>
+        <ul class="uk-list uk-list-bullet">
+            <li><b>Task&nbsp;1 (textual cross-participant summaries).</b> Automated
+            evaluation compares generated summaries against ground-truth summaries with
+            text summarization measures (e.g., variants of BLEU, BERTScore) and
+            LLM-as-a-Judge, including Nugget-based evaluations collected as part of
+            TREC&nbsp;AutoJudge.</li>
+            <li><b>Task&nbsp;2 (structured comparisons).</b> We use precision, recall,
+            and F1 against the ground-truth comparison tables.</li>
+        </ul>
+        <p>For the manual evaluation, we ask organizers of the selected host shared
+        tasks to provide feedback on how well the generated content captures their
+        own, in the form of a comparative analysis against their own overview paper
+        summaries. This expert comparison lets us identify cases where generated
+        content surfaces novel and interesting aspects that enrich the understanding
+        of the host task&rsquo;s solution space.</p>
+
+<h2 id="submission" class="uk-margin-large-top">Submission</h2>
+<p>Participants submit their agent as working software via
+<a href="https://www.tira.io/">TIRA</a>, which runs it in a sandbox for reproducibility
+and, after submissions close, on the private, blinded test set drawn from ongoing shared
+tasks. The full participation process is described on the
+<a href="index.html#index-participation">rendition overview</a>.</p>
+
+<h2 id="related-work" class="uk-margin-large-top">Related Work</h2>
+        <p>Agent&nbsp;in&nbsp;the&nbsp;Loop builds on prior summarization shared tasks
+        organized by our group at INLG, and connects to ongoing evaluation efforts for
+        LLM-based judging:</p>
+        <ul class="uk-list uk-list-bullet">
+            <li><b>The TL;DR Challenge (INLG&nbsp;2019).</b> Summarization for social
+            media, on which our three-phase protocol (development, sandboxed
+            submission, blinded test) is modeled.</li>
+            <li><b>Abstractive Snippet Generation (INLG&nbsp;2020).</b> Generating
+            abstractive snippets for web pages, the second prior INLG shared task
+            organized by our group.</li>
+            <li><b>TREC&nbsp;AutoJudge (2026/27).</b> A cross-task benchmark for
+            comparing LLM judges for citation-grounded RAG systems; we draw on its
+            Nugget-based LLM-as-a-Judge methodology and judges for our automated
+            evaluation.</li>
+            <li><b>TIRA &amp; TIREx.</b> The information retrieval experiment platform
+            we use to host blinded, reproducible submissions as working software
+            rather than static runs.</li>
+        </ul>
+
+<h2 id="task-committee" class="uk-margin-large-top">Task Committee</h2>
+<!-- TODO: replace the remaining silhouette placeholders as photos become available. -->
+<div data-uk-grid class="uk-grid uk-grid-match uk-grid-small thumbnail-card-grid">
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="/organization.html#organizing-committee" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/silhouette-male.jpg" alt="Ben Gerhards"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Ben Gerhards</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI &middot; PhD student &middot; Corpus construction, task organization</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-kassel.svg"
+                     alt="Universit&auml;t Kassel logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0001-9578-7157" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/froebe.jpg" alt="Maik Fr&ouml;be"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Maik Fr&ouml;be</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Bauhaus-Universit&auml;t Weimar &middot; Postdoc &middot; TIRA / TIREx infrastructure, blinded evaluation</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-bauhaus-universitaet-weimar.svg"
+                     alt="Bauhaus-Universit&auml;t Weimar logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="/organization.html#organizing-committee" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/achkar.jpg" alt="Pierre Achkar"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Pierre Achkar</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI &middot; PhD student &middot; Corpus construction, task organization</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-kassel.svg"
+                     alt="Universit&auml;t Kassel logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="/organization.html#organizing-committee" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/silhouette-female.jpg" alt="Marion Schmidt"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Marion Schmidt</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">German Centre for Higher Education Research and Science Studies (DZHW) &middot; Epistemology of shared tasks, evaluation design</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-dzhw.png"
+                     alt="DZHW logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="/organization.html#organizing-committee" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/simons.jpg" alt="Arno Simons"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Arno Simons</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">TU Berlin &middot; Postdoc &middot; Science, technology &amp; society perspective</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-tu-berlin.svg"
+                     alt="TU Berlin logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="/organization.html#organizing-committee" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/stein.jpg" alt="Benno Stein"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Benno Stein</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Bauhaus-Universit&auml;t Weimar &middot; Professor &middot; Task organization</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-bauhaus-universitaet-weimar.svg"
+                     alt="Bauhaus-Universit&auml;t Weimar logo">
+            </div>
+        </a>
+    </div>
+</div>
+
+<div>
+    <div class="uk-card uk-card-default uk-card-body">
+        <a href="https://orcid.org/0000-0003-2451-0665" class="uk-link-reset">
+            <div class="thumbnail-left"><img src="/img/people/potthast.jpg" alt="Martin Potthast"></div>
+            <div class="uk-height-1-1">
+                <div class="uk-card-title">Martin Potthast</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI, ScaDS.AI &middot; Professor &middot; Task coordination</div>
+                <img class="uk-position-bottom-right thumbnail-card-logo"
+                     src="/img/organizations/logo-universitaet-kassel.svg"
+                     alt="Universit&auml;t Kassel logo">
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</div>
+
+<footer class="uk-section uk-section-muted footer-section">
+    <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top">
+            <div class="uk-width-1-5@s">
+              <!-- links specific to a service -->
+            </div>
+            <div class="uk-width-expand uk-visible@s"></div>
+            <div>
+              &copy; 2026 <a href="https://webis.de/">Webis Group</a> <span class="uk-padding-small">&bullet;</span>
+              <a href="https://github.com/webis-de"><span data-uk-icon="icon: github; ratio:0.8"></span></a>
+              <a href="https://twitter.com/webis_de"><span data-uk-icon="icon: twitter; ratio:0.9"></span></a>
+              <a href="https://www.youtube.com/webis"><span data-uk-icon="icon: youtube; ratio:0.9"></span></a> <span class="uk-padding-small">&bullet;</span>
+              <a href="/organization.html">Contact</a> <span class="uk-padding-small">&bullet;</span>
+              <a href="https://webis.de/legal.html">Impressum / Terms / Privacy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    UIkit.util.ready(() => {
+        PR.prettyPrint();
+
+        const nav = UIkit.util.$(".global-nav");
+        const navHeight = UIkit.util.height(nav);
+
+        // correct scroll offset due to fixed navigation after page load
+        let fixScrollHeight = () => {
+            if (location.hash === "" || !UIkit.util.$(location.hash)) {
+                return;
+            }
+
+            const pos = document.documentElement.scrollTop;
+            const offset = UIkit.util.offset(UIkit.util.$(location.hash));
+
+            if (pos > navHeight * .8 && offset) {
+                document.documentElement.scrollTop = offset.top - navHeight - 20;
+            }
+        };
+
+        window.addEventListener("hashchange", fixScrollHeight, false);
+        setTimeout(fixScrollHeight, 100);
+    });
+</script>
+</body>
+</html>
