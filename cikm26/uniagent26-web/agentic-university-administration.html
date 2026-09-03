@@ -123,8 +123,7 @@
 <li>Submission: [<a href="#submission">runs via TIRA</a>,
 <a href="index.html#index-paper-submission">notebook papers</a>]</li>
 </ul>
-<p>The sub-tasks are <b>independent</b>: entering one does not require the other. A
-solving submission needs no prior retrieval submission.</p>
+<p>The sub-tasks are <b>independent</b>: entering one does not require the other. A submission to Task 2 does not require a submission to Task 1.</p>
 
 <a class="uk-button uk-button-primary" href="https://www.tira.io/task-overview/uniagent-2026/">Register for participation</a>
 <a class="uk-button uk-button-primary" href="https://www.tira.io/c/uniagent">Join the UniAgent forum on TIRA</a>
@@ -177,16 +176,15 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
 
         
 
-<h3 class="uk-margin-small-top">Sub-tasks</h3>
-        <p>Participants may address either of two sub-tasks, each taking the task
-        description as input. The sub-tasks are <b>independent</b>: entering one does not
-        require the other. A Solving submission needs no prior Retrieval submission.</p>
+<h3 class="uk-margin-small-top">Tasks</h3>
+        <p>We have two Tasks</p>
         <ol class="uk-list uk-list-decimal">
-            <li><b>Retrieval</b>: retrieve documents relevant to the current
-            state and task progress (focus on recall); output the run.</li>
-            <li><b>Solving</b>: build a working agent that synthesizes a full
-            solution; output the solution and a log of actions, retrieved documents, and
-            reasoning tokens.</li>
+            <li><b>Task 1 (Retrieval)</b>: Given a query that is intended to help solving an administrative task at a university,
+                retrieve relevant documents for this query from the public website of the University, from the private intranet of the university, and state laws and regulations.
+                Output a standard TREC-style run file.</li>
+            <li><b>Task 2 (Solving)</b>: Build a working agent that solves complete administrative university tasks in a batch.
+                For each task in the batch, the agent has all forms and administrative documents of the user as input and should output the administrative solution to the task.
+                The agent should, additionally to the solution of a task, also write a log of actions, tool use, etc., so that administrative staff can verify why the agent arrived at a given solution.</li>
         </ol>
 
         
