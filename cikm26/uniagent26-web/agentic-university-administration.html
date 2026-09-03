@@ -120,7 +120,7 @@
 <ul>
 <li>Sub-Task 1 &mdash; <b>Retrieval</b>: given a task from a university administration,
 retrieve the documents relevant to the current state and task progress (focus on recall);
-output the run and a log of reasoning tokens.</li>
+output the run.</li>
 <li>Sub-Task 2 &mdash; <b>Solving</b>: build a working agent that synthesizes a full
 solution; output the solution and a log of actions, retrieved documents, and reasoning
 tokens.</li>
@@ -189,8 +189,7 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         require the other. A Solving submission needs no prior Retrieval submission.</p>
         <ol class="uk-list uk-list-decimal">
             <li><b>Retrieval</b>: retrieve documents relevant to the current
-            state and task progress (focus on recall); output the run and a log of
-            reasoning tokens.</li>
+            state and task progress (focus on recall); output the run.</li>
             <li><b>Solving</b>: build a working agent that synthesizes a full
             solution; output the solution and a log of actions, retrieved documents, and
             reasoning tokens.</li>
@@ -277,8 +276,9 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
 <h2 id="output-format" class="uk-margin-large-top">Output Format</h2>
 <p><b>Input:</b> a task description (a user request, optionally with attached
         documents). <b>Output</b> depends on the chosen sub-task and follows prescribed
-        formats: retrieved documents in the TREC run format, action logs in a common
-        protocol format, and reasoning tokens as plain text. Validation tools are
+        formats: for <b>Retrieval</b>, the retrieved documents in the TREC run format; for
+        <b>Solving</b>, the synthesized solution together with action logs in a common
+        protocol format, the retrieved documents, and reasoning tokens as plain text. Validation tools are
         provided.</p>
 
 <h2 id="submission" class="uk-margin-large-top">Submission</h2>
