@@ -116,14 +116,17 @@
 
 <div class="uk-container uk-margin-medium">
 <h2 id="synopsis">Synopsis</h2>
-    Build retrieval systems (Task 1) and agents (Task 2) to support selected administrative tasks at a university.
+    <p>Build retrieval systems (Task 1) and agents (Task 2) to support selected administrative tasks at a university.
     We are collaborating with administrative staff at the University of Kassel to ensure that the systems work on real data for real information needs and administrative tasks.
+    The two tasks are independent: A submission to Task 1 does not require a submission to Task 2 or vice versa.
+    
+    </p>
+<br><br>
 <li>Communication: [<a href="https://www.tira.io/c/uniagent">UniAgent forum on TIRA</a>,
 <a href="mailto:uniagent@lists.its.uni-kassel.de">organizers</a>]</li>
 <li>Submission: [<a href="#submission">runs via TIRA</a>,
 <a href="index.html#index-paper-submission">notebook papers</a>]</li>
 </ul>
-<p>The sub-tasks are <b>independent</b>: entering one does not require the other. A submission to Task 2 does not require a submission to Task 1.</p>
 
 <a class="uk-button uk-button-primary" href="https://www.tira.io/task-overview/uniagent-2026/">Register for participation</a>
 <a class="uk-button uk-button-primary" href="https://www.tira.io/c/uniagent">Join the UniAgent forum on TIRA</a>
@@ -136,7 +139,7 @@
 <tbody>
 <tr><td>Registration Opens; demo dataset and public development data available on TIRA</td><td><b>now</b></td></tr>
 <tr><td>Registration Closes</td><td>25 September 2026</td></tr>
-<tr><td>Run Submission</td><td>15 October 2026</td></tr>
+<tr><td>Submission of the Systems</td><td>15 October 2026</td></tr>
 <tr><td>Notification of Results</td><td>3 November 2026</td></tr>
 <tr><td>Notebook Paper Submission</td><td>TBD</td></tr>
 <tr><td>Presentation at the CIKM&nbsp;2026 AnalytiCup</td><td>8 November 2026</td></tr>
@@ -160,7 +163,7 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         
 
 <h3 class="uk-margin-small-top">Topic areas</h3>
-        <p>The first edition focuses on four administrative task areas:</p>
+        <p>The first edition of UniAgent covers three administrative tasks at a university:</p>
         <ul class="uk-list uk-list-bullet">
             <li><b>Business travel</b>: travel permit requests, compliance
             checking (e.g., hotel rate limits, private extensions), and reimbursement
@@ -170,14 +173,11 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
             out-of-pocket expenses paid by university staff.</li>
             <li><b>Internal procurement</b>: identification, selection, and
             ordering of goods through the university's procurement system.</li>
-            <li><b>Administration of student employees</b>: the paperwork
-            around employing and administering student assistants.</li>
         </ul>
 
         
 
 <h3 class="uk-margin-small-top">Tasks</h3>
-        <p>We have two Tasks</p>
         <ol class="uk-list uk-list-decimal">
             <li><b>Task 1 (Retrieval)</b>: Given a query that is intended to help solving an administrative task at a university,
                 retrieve relevant documents for this query from the public website of the University, from the private intranet of the university, and state laws and regulations.
@@ -206,32 +206,28 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         
 
 <h3 class="uk-margin-small-top">Document collection</h3>
-        <p>The document collection is a crawl of the University of Kassel's web pages and
-        other sources, compiled with the
-        <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a>
-        project. We mount the crawl into your container as pre-processed documents with
-        the main content already extracted, so every team starts from the same collection.
-        We prescribe <b>no index</b>: indexing the collection from scratch takes under a
-        minute at this scale, so you bring your own retrieval pipeline or search the
-        documents directly, and keep full control over index and ranking.</p>
-        <p>The mounted collection is plain text, so no parsing is needed on your side.
-        The underlying material is largely German; teams may translate as needed.</p>
+        <p>As the administrative tasks are collected at the University of Kassel, the document collection that an Agent has access to are the documents that administrative staff at the university of Kassel usually uses to solve their tasks. This collection of documents includes (1) the University of Kassel’s public website (pages in German and English), (2) the University of Kassel’s intranet (pages in German and English), and (3) legal documents such as laws and court rulings of the State of Hesse (pages in German). All documents are crawled via the tech stack of the <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a> project. We parse all documents to their main content in plain text. During the execution, the parsed documents are mounted into the execution and a software is expected to build the retrieval pipeline for the documents on their own (We provide baselines for this using <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines/retrieval-baseline-pyterrier" target="_blank" rel="noopener">PyTerrier</a> and <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines/retrieval-baseline-pyserini" target="_blank" rel="noopener">Pyserini</a>.</p>
 
         
 
 <h3 class="uk-margin-small-top">Topics</h3>
-        <p>We compile a collection of topics across the four task areas above,
+        <p>We compile a collection of topics across the three task areas above,
         drawing on the hands-on expertise of administrative staff trained in the
         University of Kassel's &ldquo;AI&nbsp;FrAIdays&rdquo; seminar series. The topics
         are fully anonymized. Each topic
-        consists of a user query (with any attached documents), an expected output
-        following the prescribed process, and annotations for query type, complexity,
-        and rule area.</p>
-        <p>The <b>case documents</b> attached to a topic &mdash; forms, receipts, invoices,
-        and correspondence &mdash; are text-based PDFs, and your agent has to parse them.
-        This is unlike the document collection above, which arrives already extracted.
+        consists of a user query (with any attached documents). Additionally, we have the expected output and annotations for query type, complexity, and rule area that are part of the ground-truth for evaluation (i.e., systems can not use this).</p>
+        <p>The <b>case documents</b> for a topic are part of the input: forms, receipts, invoices,
+        and correspondence, usually as text-based PDFs (so that the agent needs to parse them).
+        Please note that the document collection above is already parsed with plain text extracted as they come from a homogenous source of text, whereas the case documents are from heterogenous text sources, so it is required for the agents to process the case documents from the PDF.
         Image-only documents such as scans and photos are excluded, so no OCR or vision
         component is needed.</p>
+
+        TODO: Show s "Tree" output of how the inputs look like
+
+<h3 class="uk-margin-small-top">Datasets</h3>
+
+        datasets are TBA. 
+        <!-- TODO: The following needs to be adjusted:
         <p>A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA
         shows the topic format and lets you check that your submission runs. It is
         deliberately too small to train on or to measure agent quality. A larger
@@ -246,24 +242,20 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         data. You receive the evaluation measures, never the evaluation topics or the gold
         references. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
         participation guide</a> for details.</p>
-
+	-->
         
 
 <h3 class="uk-margin-small-top">Execution environment</h3>
         <p>Submissions run in a sandbox without outbound network access, so external
         LLM&nbsp;APIs cannot be called. We host a small set of open-weight models, among
         them <b>gpt-oss-20b</b>, and expose them through a REST&nbsp;API inside the
-        environment. Packaging your own weights is not permitted, so that results reflect
-        the agent design rather than available compute.</p>
-        <p>Each run gets <b>4 CPU cores</b> and <b>20&nbsp;GB of RAM</b>, plus access to the
-        hosted model. The time limit is <b>5 minutes per case</b> and <b>4 hours</b> for a
-        complete run. We supply the environment, and you supply the tools: your agent
-        brings whatever tools it needs inside your image.</p>
+        environment. Your software needs to read environment variables to connect to the REST API of the LLM.</p>
+        <p>Each execution gets <b>4 CPU cores</b> and <b>40&nbsp;GB of RAM</b>, plus access to the
+        hosted LLM model via REST API. The time limit is <b>5 minutes per case</b> and <b>4 hours</b> for a
+        complete execution (the test dataset contains ca. 50 topics). Your agent can use whatever tools or protocol it has embedded in its docker image.</p>
         <p class="uk-text-meta">The cases are fully anonymized. No personally identifiable
         information (names, mail addresses, phone numbers) of university staff is contained
         in the collection.</p>
-
-        
 
 <h2 id="output-format" class="uk-margin-large-top">Output Format</h2>
 <p><b>Input:</b> a task description (a user request, optionally with attached
@@ -273,20 +265,14 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         protocol format, the retrieved documents, and reasoning tokens as plain text. Validation tools are
         provided.</p>
 
+<h2 id="baselines" class="uk-margin-large-top">Baselines</h2>
+
+TODO Describe baselines.
+
 <h2 id="submission" class="uk-margin-large-top">Submission</h2>
-<p>Submissions are handled via <a href="https://www.tira.io/">TIRA</a>, the
-shared task&rsquo;s reproducibility platform. You submit your agent as code (a Docker
-image) and may submit and run as often as you like during development. For the official
-evaluation, each team submits up to <b>five runs</b>, which you select yourself before any
-results are known. Validation tools check submission format and completeness.</p>
-<p><b>Submit a client-side cache</b> with every official run, recording the model and tool
-calls that produced it: prompts, responses, and retrieved sources, verbatim. This is more
-than the reasoning-token log. We rank runs by success, and we also check whether that
-success was reached for the right reasons, which needs the full trace. Without a cache, a
-run cannot be told apart from a zero-shot prediction. This follows the caching approach
-used by the TREC&nbsp;AutoJudge track.</p>
-<p>The full participation process is described on the
-<a href="index.html#index-participation">rendition overview</a>.</p>
+<p>Submissions are handled via <a href="https://www.tira.io/">TIRA</a>. We use code-submissions in TIRA to collect the systems: TIRA builds a Docker image from your source code and uploads this image to the Docker registry of TIRA. Please have a look at the <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines">baselines</a> that show how this process works. Each team can contribute up to five submissions for the final evaluation (you can submit more systems, but when you have more then five submissions we ask you to prioritize them before the official evaluation results are out).</p>
+
+<p>The full participation process is described on the <a href="index.html#index-participation">participation overview</a>.</p>
 
 <h2 id="evaluation" class="uk-margin-large-top">Evaluation</h2>
         <p>We combine manual and automatic evaluation.</p>
@@ -294,27 +280,12 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <li><b>Task 1 (Retrieval)</b>: The retrieval runs are evaluated against classical qrel-style relevance judgments that allow to evaluate diverse IR measures.
                 Participants can decide which measure they want to focus on.
             </li>
-            <li><b>(2) Solving.</b> The synthesized solution is scored on <i>task
-            success</i>, a binary criterion. A run succeeds if it produces the minimal
-            solution a peer would accept, such as a reimbursement application with valid
-            receipts. Non-successful runs are then ranked more finely by the number and
-            severity of their errors: rule violations, missing receipts, or incorrect form
-            fields. The agent behavior log additionally yields tool-use accuracy
-            (precision and recall of tool calls) and retrieval quality. A qualitative
-            audit finally verifies that the solution was reached for the right
-            reasons.</li>
+            <li><b>(2) Solving.</b> The synthesized solution is scored via accuracy, i.e., would the agents make the same decisions as the administrative stuff of the university. Accuracy is one measure that we can properly evaluate, because we have the ground-truth data for this. However, If an Agent can be used in practice can depend on many more dimensions than accuracy, and, in the long term (not in the first iteration), we also want to encourage the community to research on evaluations that go beyound accuracy. For this, we ask that agents do not output only their decision (which is the only thing we look at for the evaluation in the first iteration of UniAgent), but also output logs of their tool-use, reasoning, etc. We plan to make (anonymized) outputs of agents publically available after the shared task, so that the community can work on evaluation measures that go beyond accuracy, and, for example, take into consideration if the logs of an Agent are helpful for administrative staff, for instance, to decide if a decision was reached for the right reasons.</li>
         </ul>
-        <p>Across all sub-tasks we also report <b>efficiency</b> measures: manual
-        task-completion time (a trained-human baseline), runtime, and environmental
-        impact, for which we investigate the TIREx tracker. Judges compare solutions
-        against expert reference solutions, ideally via a diff visualization; trained
-        laypeople suffice for most topics, with regulatory edge cases referred to domain
-        experts. Automatic LLM-as-judge measures will be validated against the human
-        reference-based judgments on a sample before being used to rank systems. The
-        organizers carry out the necessary judgments and assessments.</p>
+        <p>Across the two tasks we also intend to include efficiency into the evaluation. The main aspects of efficiency for us are the overall elapsed time to solve a task and the number of input and output tokes against the hosted LLM that an Agent used during its execution.</p>
 
 <h2 id="related-work" class="uk-margin-large-top">Related Work</h2>
-        <p>This task builds on and complements prior community evaluations:</p>
+        <p>This task builds on and complements prior shared tasks:</p>
         <ul class="uk-list uk-list-bullet">
             <li><b>TREC Enterprise tracks (2005 to 2008).</b> We revisit the
             enterprise setting with a more holistic aim: rather than retrieving
@@ -326,9 +297,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <li><b>TREC RAG track (2024 to 2026).</b> A RAG response is a synthesized
             solution integrating retrieval, but does not include tool calling or richer
             environment interactions.</li>
-            <li><b>TREC AutoJudge track (2026)</b> and the <b>CLEF</b> evaluation labs
-            (e.g., Touch&eacute;, LongEval), with which integration and shared expertise
-            are foreseen.</li>
+            <li><b>TREC AutoJudge track (2026)</b> Similar LLM-as-a-judge behaviour, just generic, whereas we only focus on administrative tasks at the university.</li>
         </ul>
 
 <h2 id="task-committee" class="uk-margin-large-top">Task Committee</h2>
@@ -340,7 +309,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/potthast.jpg" alt="Martin Potthast"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Martin Potthast</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI, ScaDS.AI &middot; Track coordinator</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI, ScaDS.AI</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-kassel.svg"
                      alt="Universit&auml;t Kassel logo">
@@ -355,7 +324,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/kruschwitz.jpg" alt="Udo Kruschwitz"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Udo Kruschwitz</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Regensburg &middot; Enterprise search and assessment design</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Regensburg</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-regensburg.svg"
                      alt="Universit&auml;t Regensburg logo">
@@ -370,7 +339,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/granitzer.jpg" alt="Michael Granitzer"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Michael Granitzer</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau &middot; Collection, crawling, RAG infrastructure (OpenWebSearch.eu)</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-passau.svg"
                      alt="Universit&auml;t Passau logo">
@@ -385,7 +354,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/dinzinger.jpg" alt="Michael Dinzinger"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Michael Dinzinger</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau &middot; Collection, crawling, RAG infrastructure (OpenWebSearch.eu)</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-passau.svg"
                      alt="Universit&auml;t Passau logo">
@@ -400,7 +369,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/silhouette-male.jpg" alt="Hai Dang Dang"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Hai Dang Dang</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau &middot; Crawling and document collection (OpenWebSearch.eu)</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Passau</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-passau.svg"
                      alt="Universit&auml;t Passau logo">
@@ -415,7 +384,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/devries.jpg" alt="Arjen P. de Vries"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Arjen P. de Vries</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Radboud University &middot; Evaluation methodology</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Radboud University</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-radboud-university.svg"
                      alt="Radboud University logo">
@@ -430,7 +399,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/scells.jpg" alt="Harrisen Scells"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Harrisen Scells</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of T&uuml;bingen &middot; Tooling and baselines</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of T&uuml;bingen</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-tuebingen.svg"
                      alt="Universit&auml;t T&uuml;bingen logo">
@@ -445,9 +414,9 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/froebe.jpg" alt="Maik Fr&ouml;be"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Maik Fr&ouml;be</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Friedrich-Schiller-Universit&auml;t Jena &middot; Reproducibility infrastructure (TIRA)</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Bauhaus Universit&auml;t Weimar</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
-                     src="/img/organizations/logo-friedrich-schiller-university-jena.svg"
+                     src="/img/organizations/logo-bauhaus-universitaet-weimar.svg"
                      alt="Friedrich Schiller University Jena logo">
             </div>
         </a>
@@ -460,7 +429,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/parry.jpg" alt="Andrew Parry"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Andrew Parry</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Bloomberg LP &middot; Measures and analysis</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">Bloomberg LP</div>
             </div>
         </a>
     </div>
@@ -472,7 +441,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/ruth.jpg" alt="Simon Ruth"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Simon Ruth</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI &middot; Topic curation, data labeling, mock tool backends</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-kassel.svg"
                      alt="Universit&auml;t Kassel logo">
@@ -487,7 +456,7 @@ used by the TREC&nbsp;AutoJudge track.</p>
             <div class="thumbnail-left"><img src="/img/people/silhouette-female.jpg" alt="Clara Erner"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Clara Erner</div>
-                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel &middot; Topic curation, data labeling, mock tool backends</div>
+                <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel</div>
                 <img class="uk-position-bottom-right thumbnail-card-logo"
                      src="/img/organizations/logo-universitaet-kassel.svg"
                      alt="Universit&auml;t Kassel logo">
