@@ -185,7 +185,92 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
                 Output a standard TREC-style run file.</li>
             <li><b>Task 2 (Solving)</b>: Build a working agent that solves complete administrative university tasks in a batch.
                 For each task in the batch, the agent has all forms and administrative documents of the user as input and should output the administrative solution to the task.
-                The agent should, additionally to the solution of a task, also write a log of actions, tool use, etc., so that administrative staff can verify why the agent arrived at a given solution.</li>
+
+            <p>For each Solving topic, submissions must write a machine-readable event log as JSON Lines in a file named
+            <code>run_trace.jsonl</code>. Each line is one event. The log is used for auditability:
+            it should show which inputs, retrieval results, model calls, and tool calls led to the
+            submitted decision. It must not contain hidden chain-of-thought. If the hosted model
+            reports token-usage metadata, including reasoning-token counts, these counts should be
+            recorded as described below.</p>
+
+            <p>Each event should follow this structure:</p>
+
+            <pre class="prettyprint lang-json"><code>{
+                "trace_version": "1.0",
+                "run_id": "team42-systemA-2026-10-15T12:34:56Z",
+                "case_id": "dienstreiseantrag-03",
+                "event_id": "evt-0007",
+                "parent_event_id": "evt-0006",
+                "timestamp": "2026-10-15T12:35:14.230Z",
+                "event_type": "model_call",
+                "actor": "agent",
+                "name": "draft-decision",
+                "input": {
+                "prompt": "Check the travel request for completeness and rule compliance.",
+                "documents": ["antrag.pdf", "bahn-ticket.pdf"]
+                },
+                "output": {
+                "response": "The request is incomplete because the return trip is missing...",
+                "cited_sources": [
+                    {
+                    "source_id": "antrag.pdf",
+                    "page": 1,
+                    "quote": "Ende Dienstgeschäft: 11.02.2026"
+                    }
+                ]
+                },
+                "usage": {
+                "input_tokens": 1842,
+                "output_tokens": 211,
+                "reasoning_tokens": 96,
+                "total_tokens": 2149
+                },
+                "status": "ok",
+                "error": null
+            }</code></pre>
+
+            <p>The field <code>event_type</code> should be one of
+            <code>input</code>, <code>retrieval</code>, <code>model_call</code>,
+            <code>tool_call</code>, <code>observation</code>, <code>decision</code>, or
+            <code>error</code>. Fields that are not applicable may be set to <code>null</code> or
+            omitted. For deterministic review, all prompts, model responses, tool arguments, tool
+            outputs, retrieved document identifiers, cited passages, errors, and token counters
+            should be logged verbatim where possible.</p>
+
+            <p>The final event of each trace should have <code>event_type: "decision"</code> and
+            contain the submitted answer, the decision label, and the evidence used for the decision:</p>
+
+            <pre class="prettyprint lang-json"><code>{
+                "trace_version": "1.0",
+                "run_id": "team42-systemA-2026-10-15T12:34:56Z",
+                "case_id": "dienstreiseantrag-03",
+                "event_id": "evt-0012",
+                "parent_event_id": "evt-0011",
+                "timestamp": "2026-10-15T12:36:02.018Z",
+                "event_type": "decision",
+                "actor": "agent",
+                "name": "final-answer",
+                "output": {
+                "decision": "deny",
+                "answer": "The request must be returned for correction...",
+                "evidence": [
+                    {
+                    "source_id": "antrag.pdf",
+                    "page": 1,
+                    "relevance": "The end date of the business activity is before the travel date."
+                    },
+                    {
+                    "source_id": "bahn-ticket.pdf",
+                    "page": 1,
+                    "relevance": "Only the outbound trip is documented."
+                    }
+                ]
+                },
+                "usage": null,
+                "status": "ok",
+                "error": null
+            }</code></pre>
+        </li>
         </ol>
 
         
@@ -226,24 +311,17 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         <!-- TODO: Show s "Tree" output of how the inputs look like -->
 
 <h3 class="uk-margin-small-top">Datasets</h3>
+        <p>For <b>Task 1 (Retrieval)</b>, we provide public <b>spot-check datasets</b> for testing retrieval submissions. 
+        Each dataset contains topics in <code>queries.jsonl</code> and relevance judgments in standard TREC qrels format (<code>qrels.txt</code>).
+        
+        <p>For <b>Task 2 (Solving)</b>, we provide a small public
+        <b>business-trip spot-check dataset</b>. It contains input documents similar to the real cases under<code>decision-trail/</code>, as well as judgments and justifications (<code>ground-truth.jsonl</code>).</p>
 
-        TBA. 
-        <!-- TODO: The following needs to be adjusted:
-        <p>A small <b>demo dataset</b> (&ldquo;business-trip-spot-check&rdquo;) on TIRA
-        shows the topic format and lets you check that your submission runs. It is
-        deliberately too small to train on or to measure agent quality. A larger
-        <b>public development dataset</b> adds synthetic cases with reference solutions to
-        develop against. For the Retrieval sub-task we also provide <b>spot-check
-        datasets</b> in German and English, built from our public crawl, with queries
-        synthesized against a target document and first-stage retrieval baselines; as
-        queries and judgments are both synthetic, these confirm that a system works rather
-        than evaluate how well it works.</p>
-        <p>The <b>evaluation topics</b> stay inside <b>TIRA</b> and are not released. You
-        submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
-        data. You receive the evaluation measures, never the evaluation topics or the gold
-        references. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
+        We do not publish any training data, due to privacy concerns. Evaluation is entirely done within TIRA.
+
+        <p> Please submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
+        data. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
         participation guide</a> for details.</p>
-	-->
         
 
 <h3 class="uk-margin-small-top">Execution environment</h3>
