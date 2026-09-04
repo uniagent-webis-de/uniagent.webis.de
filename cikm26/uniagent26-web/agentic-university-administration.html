@@ -344,10 +344,13 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
         protocol format, the retrieved documents, and reasoning tokens as plain text. Validation tools are
         provided.</p>
 
-<h2 id="baselines" class="uk-margin-large-top">Baselines</h2>
+  <h2 id="baselines" class="uk-margin-large-top">Baselines</h2>
 
-TBA
-<!-- TODO Describe baselines. -->
+  <p>
+    We provide simple TIRA-compatible baselines for all tasks. For retrieval (Task 1), we provide a PyTerrier
+    baseline with standard lexical ranking models such as BM25. For Task 2 (Solving), this includes a deterministic always-rejected baseline and a
+    tool-augmented smolagents baseline, using simple policies as rules. For details, please check here: <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines" target="_blank" rel="noopener">Github</a>
+  </p>
 
 <h2 id="submission" class="uk-margin-large-top">Submission</h2>
 <p>Submissions are handled via <a href="https://www.tira.io/">TIRA</a>. We use code-submissions in TIRA to collect the systems: TIRA builds a Docker image from your source code and uploads this image to the Docker registry of TIRA. Please have a look at the <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines">baselines</a> that show how this process works. Each team can contribute up to five submissions for the final evaluation (you can submit more systems, but when you have more then five submissions we ask you to prioritize them before the official evaluation results are out).</p>
