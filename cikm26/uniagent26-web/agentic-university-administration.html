@@ -138,7 +138,7 @@
 <tr><th>Event</th><th>Date</th></tr>
 </thead>
 <tbody>
-<tr><td>Registration Opens; demo datasets available on TIRA</td><td><b>now</b></td></tr>
+<tr><td>Registration Opens; spot-check datasets available on TIRA</td><td><b>now</b></td></tr>
 <tr><td>Registration Closes</td><td>25 September 2026</td></tr>
 <tr><td>Submission of the Systems</td><td>15 October 2026</td></tr>
 <tr><td>Notification of Results</td><td>3 November 2026</td></tr>
@@ -312,19 +312,21 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
 
 <h3 class="uk-margin-small-top">Datasets</h3>
         <p>For <b>Task 1 (Retrieval)</b>, we provide public <b>spot-check datasets</b> for testing retrieval submissions. 
-        Each dataset contains topics in <code>queries.jsonl</code> and relevance judgments in standard TREC qrels format (<code>qrels.txt</code>).
-        
+        Each dataset contains topics in <code>queries.jsonl</code> and relevance judgments in standard TREC qrels format (<code>qrels.txt</code>).</p>
+
         <p>For <b>Task 2 (Solving)</b>, we provide a small public
         <b>business-trip spot-check dataset</b>. It contains input documents similar to the real cases under<code>decision-trail/</code>, as well as judgments and justifications (<code>ground-truth.jsonl</code>).</p>
 
-        We do not publish any training data, due to privacy concerns. Evaluation is entirely done within TIRA.
+        <p>We do not publish the underlying case data, neither for development nor for
+        evaluation, due to privacy concerns.</p>
 
         <p> Please submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
         data. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
         participation guide</a> for details.</p>
 
-        <p><i>Evaluation runs on the UniAgent Test Set, which stays inside TIRA and
-        is not released. It is under development and will be announced here.</i></p>        
+        <p><i>Evaluation runs on the UniAgent Test Set. It stays inside TIRA; participants submit code and TIRA runs it against
+        the data. The test set is still being finalized, and we will post its size and
+        topic distribution here once it is fixed.</i></p>        
 
 <h3 class="uk-margin-small-top">Execution environment</h3>
         <p>Submissions run in a sandbox without outbound network access, so external
@@ -365,7 +367,7 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
             <li><b>Task 1 (Retrieval)</b>: The retrieval runs are evaluated against classical qrel-style relevance judgments that allow to evaluate diverse IR measures.
                 Participants can decide which measure they want to focus on.
             </li>
-            <li><b>(2) Solving.</b> The synthesized solution is scored via accuracy, i.e., would the agents make the same decisions as the administrative staff of the university. Accuracy is one measure that we can properly evaluate, because we have the ground-truth data for this. However, If an Agent can be used in practice can depend on many more dimensions than accuracy, and, in the long term (not in the first iteration), we also want to encourage the community to research on evaluations that go beyound accuracy. For this, we ask that agents do not output only their decision (which is the only thing we look at for the evaluation in the first iteration of UniAgent), but also output logs of their tool-use, reasoning, etc. We plan to make (anonymized) outputs of agents publically available after the shared task, so that the community can work on evaluation measures that go beyond accuracy, and, for example, take into consideration if the logs of an Agent are helpful for administrative staff, for instance, to decide if a decision was reached for the right reasons.</li>
+            <li><b>(2) Solving.</b> The synthesized solution is scored via accuracy, i.e., would the agents make the same decisions as the administrative staff of the university. Accuracy is one measure that we can properly evaluate, because we have the ground-truth data for this. However, If an Agent can be used in practice can depend on many more dimensions than accuracy, and, in the long term (not in the first iteration), we also want to encourage the community to research on evaluations that go beyound accuracy. For this, we ask that agents do not output only their decision (which is the only thing we look at for the evaluation in the first iteration of UniAgent), but also output logs of their tool-use, reasoning, etc. We would like to make agent logs available for follow-up research on evaluation measures that go beyond accuracy, for example to take into consideration if the logs of an Agent are helpful for administrative staff to decide if a decision was reached for the right reasons. Any such release requires a review and clearance with university, further infos will be announced.</li>
         </ul>
         <p>Across the two tasks we also intend to include efficiency into the evaluation. The main aspects of efficiency for us are the overall elapsed time to solve a task and the number of input and output tokens against the hosted LLM that an Agent used during its execution.</p>
 
