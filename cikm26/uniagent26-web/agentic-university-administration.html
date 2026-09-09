@@ -186,28 +186,24 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
             <li><b>Task 2 (Solving)</b>: Build a working agent that solves complete administrative university tasks in a batch.
                 For each task in the batch, the agent has all forms and administrative documents of the user as input and should output the administrative solution to the task.
 
-            <p>For each Solving topic, submissions must write a machine-readable event log as JSON Lines in a file named
-            <code>run_trace.jsonl</code>. Each line is one event. The log is used for auditability:
-            it should show which inputs, retrieval results, model calls, and tool calls led to the
-            submitted decision. It must not contain hidden chain-of-thought. If the hosted model
-            reports token-usage metadata, including reasoning-token counts, these counts should be
-            recorded as described below.</p>
+<h3 class="uk-margin-small-top">Logging of Events and Tool Calls</h3>
 
-            <p>Each event should follow this structure:</p>
+<p>
+To support evaluations that go beyound effectiveness in the target task, we ask that the executed software (in both tasks) produces an event log of tool calls (can be skipped if no tools are used). We plan to make this event log (potentially anonymized) public after the shared task, so that the community can work on new evaluation measures that can also incorporate if the logs of an agent are helpful (for instance, to decide if a decision of an agent is right for the right reason). The event log must be in gzip-compressed JSON Lines format in a file <code>run_trace.jsonl.gz</code>. Each line is one event (e.g., a tool call). The log can be used for auditability, i.e., the log can, additionally to the raw facts of what tool was called, also incorporate which aspects that help to describe why an tool call yielded which decision. If the hosted model reports token-usage metadata, they could be included as well.
+</p>
+
+<p>Each line in the event log should have a structure like:</p>
 
             <pre class="prettyprint lang-json"><code>{
-                "trace_version": "1.0",
-                "run_id": "team42-systemA-2026-10-15T12:34:56Z",
                 "case_id": "dienstreiseantrag-03",
                 "event_id": "evt-0007",
                 "parent_event_id": "evt-0006",
                 "timestamp": "2026-10-15T12:35:14.230Z",
                 "event_type": "model_call",
-                "actor": "agent",
-                "name": "draft-decision",
+                "tool": None,
                 "input": {
-                "prompt": "Check the travel request for completeness and rule compliance.",
-                "documents": ["antrag.pdf", "bahn-ticket.pdf"]
+                  "prompt": "Check the travel request for completeness and rule compliance.",
+                  "documents": ["antrag.pdf", "bahn-ticket.pdf"]
                 },
                 "output": {
                 "response": "The request is incomplete because the return trip is missing...",
@@ -219,37 +215,23 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
                     }
                 ]
                 },
-                "usage": {
-                "input_tokens": 1842,
-                "output_tokens": 211,
-                "reasoning_tokens": 96,
-                "total_tokens": 2149
-                },
                 "status": "ok",
                 "error": null
             }</code></pre>
 
             <p>The field <code>event_type</code> should be one of
-            <code>input</code>, <code>retrieval</code>, <code>model_call</code>,
-            <code>tool_call</code>, <code>observation</code>, <code>decision</code>, or
-            <code>error</code>. Fields that are not applicable may be set to <code>null</code> or
-            omitted. For deterministic review, all prompts, model responses, tool arguments, tool
-            outputs, retrieved document identifiers, cited passages, errors, and token counters
-            should be logged verbatim where possible.</p>
+            <code>input</code>, <code>model_call</code>, <code>tool_call</code>, <code>observation</code>, <code>decision</code>, <code>error</code>, or potentially other additional fields when needed. Fields that are not applicable may be set to <code>null</code> or omitted. To make the log complete, you can log important prompts, model responses, tool arguments, tool
+            outputs, retrieved document identifiers, cited passages, errors.</p>
 
             <p>The final event of each trace should have <code>event_type: "decision"</code> and
             contain the submitted answer, the decision label, and the evidence used for the decision:</p>
 
             <pre class="prettyprint lang-json"><code>{
-                "trace_version": "1.0",
-                "run_id": "team42-systemA-2026-10-15T12:34:56Z",
                 "case_id": "dienstreiseantrag-03",
                 "event_id": "evt-0012",
                 "parent_event_id": "evt-0011",
                 "timestamp": "2026-10-15T12:36:02.018Z",
                 "event_type": "decision",
-                "actor": "agent",
-                "name": "final-answer",
                 "output": {
                 "decision": "deny",
                 "answer": "The request must be returned for correction...",
@@ -266,7 +248,6 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
                     }
                 ]
                 },
-                "usage": null,
                 "status": "ok",
                 "error": null
             }</code></pre>
