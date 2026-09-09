@@ -200,7 +200,7 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
 <h3 class="uk-margin-small-top">Logging of Events and Tool Calls</h3>
 
 <p>
-To support evaluations that go beyound effectiveness in the target task, we ask that the executed software (in both tasks) produces an event log of tool calls (can be skipped if no tools are used). We plan to make this event log (potentially anonymized) public after the shared task, so that the community can work on new evaluation measures that can also incorporate if the logs of an agent are helpful (for instance, to decide if a decision of an agent is right for the right reason). The event log must be in gzip-compressed JSON Lines format in a file <code>run_trace.jsonl.gz</code>. Each line is one event (e.g., a tool call). The log can be used for auditability, i.e., the log can, additionally to the raw facts of what tool was called, also incorporate which aspects that help to describe why an tool call yielded which decision. If the hosted model reports token-usage metadata, they could be included as well. The full description of the required event log is available in the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/cikm26/event-logging-contract/README.md">event logging contract</a>.
+To support evaluations that go beyound effectiveness in the target task, we ask that the executed software (in both tasks) produces an event log of tool calls (can be skipped if no tools are used). We plan to make this event log (potentially anonymized) public after the shared task, so that the community can work on new evaluation measures that can also incorporate if the logs of an agent are helpful (for instance, to decide if a decision of an agent is right for the right reason). The event log must be in gzip-compressed JSON Lines format in a file <code>run-trace.jsonl.log.gz</code>. Each line is one event (e.g., a tool call). The log can be used for auditability, i.e., the log can, additionally to the raw facts of what tool was called, also incorporate which aspects that help to describe why an tool call yielded which decision. If the hosted model reports token-usage metadata, they could be included as well. The full description of the required event log is available in the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/cikm26/event-logging-contract/README.md">event logging contract</a>.
 </p>
 
 
@@ -209,49 +209,44 @@ To support evaluations that go beyound effectiveness in the target task, we ask 
 <p>We want to support the development of approaches via coding agents. (Our baselines are also developed via coding agents.) You can point your agent to the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/AGENTS.md">AGENTS.md</a> file and to the <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines">baselines</a>. Agents should try to implement the software so that it follows the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/cikm26/event-logging-contract/README.md">event logging contract</a>.</p>
 
 
+<h2 id="data" class="uk-margin-large-top">Data</h2>
 
-<h2 id="data" class="uk-margin-large-top">Data &amp; Tools</h2>
-        <p>The environment comprises a document collection, a set of topics, and a hosted
-        language model.</p>
 
-        
-
-<h3 class="uk-margin-small-top">Document collection</h3>
+<h3 class="uk-margin-small-top">Document collections</h3>
         <p>As the administrative tasks are collected at the University of Kassel, the document collection that an Agent has access to are the documents that administrative staff at the university of Kassel usually uses to solve their tasks. This collection of documents includes (1) the University of Kassel’s public website (pages in German and English), (2) the University of Kassel’s intranet (pages in German and English), and (3) legal documents such as laws and court rulings of the State of Hesse (pages in German). All documents are crawled via the tech stack of the <a href="https://openwebsearch.eu" target="_blank" rel="noopener">OpenWebSearch.eu</a> project. We parse all documents to their main content in plain text. During the execution, the parsed documents are mounted into the execution and a software is expected to build the retrieval pipeline for the documents on their own (we provide baselines for this using <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines/retrieval-baseline-pyterrier" target="_blank" rel="noopener">PyTerrier</a> and <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines/retrieval-baseline-pyserini" target="_blank" rel="noopener">Pyserini</a>).</p>
 
-        
-
 <h3 class="uk-margin-small-top">Topics</h3>
-        <p>We compile a collection of topics across the three task areas above,
-        drawing on the hands-on expertise of administrative staff trained in the
-        University of Kassel's &ldquo;AI&nbsp;FrAIdays&rdquo; seminar series. The topics
-        are fully anonymized. Each topic
-        consists of a user query (with any attached documents). Additionally, we have the expected output and annotations for query type, complexity, and rule area that are part of the ground-truth for evaluation (i.e., systems can not use this).</p>
+        <p>We compile a collection of topics across the three task areas above from administrative staff trained in the University of Kassel's &ldquo;AI&nbsp;FrAIdays&rdquo; seminar series. The topics
+        are fully anonymized. Each topic consists of a user query (with any attached documents). Additionally, we have the expected output and annotations for query type, complexity, and rule area that are part of the ground-truth for evaluation (i.e., systems can not use this).</p>
         <p>The <b>case documents</b> for a topic are part of the input: forms, receipts, invoices,
         and correspondence, usually as text-based PDFs (so that the agent needs to parse them).
         Please note that the document collection above is already parsed with plain text extracted as they come from a homogenous source of text, whereas the case documents are from heterogenous text sources, so it is required for the agents to process the case documents from the PDF.
         Image-only documents such as scans and photos are excluded, so no OCR or vision
         component is needed.</p>
 
-        <!-- TODO: Show s "Tree" output of how the inputs look like -->
+<h3 class="uk-margin-small-top">Available Datasets for Task 1 (Retrieval)</h3>
 
-<h3 class="uk-margin-small-top">Datasets</h3>
-        <p>For <b>Task 1 (Retrieval)</b>, we provide public <b>spot-check datasets</b> for testing retrieval submissions. 
-        Each dataset contains topics in <code>queries.jsonl</code> and relevance judgments in standard TREC qrels format (<code>qrels.txt</code>).</p>
+Please see <a href="https://www.tira.io/datasets?query=uniagent">tira.io/datasets?query=uniagent</a> respectively <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets">the github repository</a> for an overview of all datasets. Here is a small description of all datasets that are of interest to Task 1 on retrieval.
 
-        <p>For <b>Task 2 (Solving)</b>, we provide a small public
-        <b>business-trip spot-check dataset</b>. It contains input documents similar to the real cases under<code>decision-trail/</code>, as well as judgments and justifications (<code>ground-truth.jsonl</code>).</p>
+All retrieval datasets will be organized in the same way. We make three spot-check datasets available: retrieval-de-spot-check (TBD.), retrieval-en-spot-check (TBD.), and retrieval-hessian-law-de-spot-check (TBD.).
 
-        <p>We do not publish the underlying case data, neither for development nor for
-        evaluation, due to privacy concerns.</p>
+<h3 class="uk-margin-small-top">Available Datasets for Task 2 (Solving)</h3>
 
-        <p> Please submit your agent as <b>code</b> (a Docker image), and TIRA runs it against the
+Please see <a href="https://www.tira.io/datasets?query=uniagent">tira.io/datasets?query=uniagent</a> respectively <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets">the github repository</a> for an overview of all datasets. Here is a small description of all datasets that are of interest to Task 2 on retrieval.
+
+All datasets will be organized in the same way. We make one spot-check dataset available, 
+
+
+<h3 class="uk-margin-small-top">Submission</h3>
+        <p>We do not publish the underlying case data, neither for development nor for evaluation, due to privacy reasons.</p>
+
+        <p> Please submit your agent as <b>code submission</b> via TIRA (i.e., a docker image build from the code). In TIRA, we then run the submissions in a sandbox against the
         data. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
         participation guide</a> for details.</p>
 
-        <p><i>Evaluation runs on the UniAgent Test Set. It stays inside TIRA; participants submit code and TIRA runs it against
-        the data. The test set is still being finalized, and we will post its size and
-        topic distribution here once it is fixed.</i></p>        
+        <p><i>Evaluation runs on the UniAgent Test Set. The test data stays inside TIRA; participants submit code and TIRA runs it against
+        the test data. The test set is still being finalized, and we will post its size and
+        topic distribution here once it is finalized.</i></p>
 
 <h3 class="uk-margin-small-top">Execution environment</h3>
         <p>Submissions run in a sandbox without outbound network access, so external
