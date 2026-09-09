@@ -176,6 +176,16 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
             ordering of goods through the university's procurement system.</li>
         </ul>
 
+
+<h3 class="uk-margin-small-top">Example topic</h3>
+        <figure class="uk-margin">
+            <img src="/img/example-topic.png" style="max-width:380px;width:100%;border:1px solid #e5e5e5;border-radius:3px;"
+                 alt="Example topic for travel reimbursement: an agent receives the travel regulations and BPMN reimbursement workflow, then processes a conference-trip reimbursement request with attached receipts (train, hotel, registration), producing the steps check, fill, and submit.">
+            <figcaption class="uk-text-meta uk-margin-small-top">Example topic for travel
+            reimbursement: a user query with attached documents, the expected agent output
+            following the prescribed process, and annotations for query type, complexity,
+            and rule area.</figcaption>
+        </figure>
         
 
 <h3 class="uk-margin-small-top">Tasks</h3>
@@ -189,82 +199,15 @@ runs from 9 to 11&nbsp;November&nbsp;2026.</p>
 <h3 class="uk-margin-small-top">Logging of Events and Tool Calls</h3>
 
 <p>
-To support evaluations that go beyound effectiveness in the target task, we ask that the executed software (in both tasks) produces an event log of tool calls (can be skipped if no tools are used). We plan to make this event log (potentially anonymized) public after the shared task, so that the community can work on new evaluation measures that can also incorporate if the logs of an agent are helpful (for instance, to decide if a decision of an agent is right for the right reason). The event log must be in gzip-compressed JSON Lines format in a file <code>run_trace.jsonl.gz</code>. Each line is one event (e.g., a tool call). The log can be used for auditability, i.e., the log can, additionally to the raw facts of what tool was called, also incorporate which aspects that help to describe why an tool call yielded which decision. If the hosted model reports token-usage metadata, they could be included as well.
+To support evaluations that go beyound effectiveness in the target task, we ask that the executed software (in both tasks) produces an event log of tool calls (can be skipped if no tools are used). We plan to make this event log (potentially anonymized) public after the shared task, so that the community can work on new evaluation measures that can also incorporate if the logs of an agent are helpful (for instance, to decide if a decision of an agent is right for the right reason). The event log must be in gzip-compressed JSON Lines format in a file <code>run_trace.jsonl.gz</code>. Each line is one event (e.g., a tool call). The log can be used for auditability, i.e., the log can, additionally to the raw facts of what tool was called, also incorporate which aspects that help to describe why an tool call yielded which decision. If the hosted model reports token-usage metadata, they could be included as well. The full description of the required event log is available in the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/cikm26/event-logging-contract/README.md">event logging contract</a>.
 </p>
 
-<p>Each line in the event log should have a structure like:</p>
 
-            <pre class="prettyprint lang-json"><code>{
-                "case_id": "dienstreiseantrag-03",
-                "event_id": "evt-0007",
-                "parent_event_id": "evt-0006",
-                "timestamp": "2026-10-15T12:35:14.230Z",
-                "event_type": "model_call",
-                "tool": None,
-                "input": {
-                  "prompt": "Check the travel request for completeness and rule compliance.",
-                  "documents": ["antrag.pdf", "bahn-ticket.pdf"]
-                },
-                "output": {
-                "response": "The request is incomplete because the return trip is missing...",
-                "cited_sources": [
-                    {
-                    "source_id": "antrag.pdf",
-                    "page": 1,
-                    "quote": "Ende Dienstgeschäft: 11.02.2026"
-                    }
-                ]
-                },
-                "status": "ok",
-                "error": null
-            }</code></pre>
+<h3 class="uk-margin-small-top">Agentic Development</h3>
 
-            <p>The field <code>event_type</code> should be one of
-            <code>input</code>, <code>model_call</code>, <code>tool_call</code>, <code>observation</code>, <code>decision</code>, <code>error</code>, or potentially other additional fields when needed. Fields that are not applicable may be set to <code>null</code> or omitted. To make the log complete, you can log important prompts, model responses, tool arguments, tool
-            outputs, retrieved document identifiers, cited passages, errors.</p>
+<p>We want to support the development of approaches via coding agents. (Our baselines are also developed via coding agents.) You can point your agent to the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/AGENTS.md">AGENTS.md</a> file and to the <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/baselines">baselines</a>. Agents should try to implement the software so that it follows the <a href="https://github.com/uniagent-webis-de/uniagent-code/blob/main/cikm26/event-logging-contract/README.md">event logging contract</a>.</p>
 
-            <p>The final event of each trace should have <code>event_type: "decision"</code> and
-            contain the submitted answer, the decision label, and the evidence used for the decision:</p>
 
-            <pre class="prettyprint lang-json"><code>{
-                "case_id": "dienstreiseantrag-03",
-                "event_id": "evt-0012",
-                "parent_event_id": "evt-0011",
-                "timestamp": "2026-10-15T12:36:02.018Z",
-                "event_type": "decision",
-                "output": {
-                "decision": "deny",
-                "answer": "The request must be returned for correction...",
-                "evidence": [
-                    {
-                    "source_id": "antrag.pdf",
-                    "page": 1,
-                    "relevance": "The end date of the business activity is before the travel date."
-                    },
-                    {
-                    "source_id": "bahn-ticket.pdf",
-                    "page": 1,
-                    "relevance": "Only the outbound trip is documented."
-                    }
-                ]
-                },
-                "status": "ok",
-                "error": null
-            }</code></pre>
-        </li>
-        </ol>
-
-        
-
-<h3 class="uk-margin-small-top">Example topic</h3>
-        <figure class="uk-margin">
-            <img src="/img/example-topic.png" style="max-width:380px;width:100%;border:1px solid #e5e5e5;border-radius:3px;"
-                 alt="Example topic for travel reimbursement: an agent receives the travel regulations and BPMN reimbursement workflow, then processes a conference-trip reimbursement request with attached receipts (train, hotel, registration), producing the steps check, fill, and submit.">
-            <figcaption class="uk-text-meta uk-margin-small-top">Example topic for travel
-            reimbursement: a user query with attached documents, the expected agent output
-            following the prescribed process, and annotations for query type, complexity,
-            and rule area.</figcaption>
-        </figure>
 
 <h2 id="data" class="uk-margin-large-top">Data &amp; Tools</h2>
         <p>The environment comprises a document collection, a set of topics, and a hosted
