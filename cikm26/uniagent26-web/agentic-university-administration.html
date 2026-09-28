@@ -262,7 +262,7 @@ All internal solving datasets will be organized in the same way. We make one spo
 <h3 class="uk-margin-small-top">Execution environment</h3>
         <p>Submissions run in a sandbox without outbound network access, so external
         LLM&nbsp;APIs cannot be called. We host a small set of open-weight models, among
-        them <b>gpt-oss-20b</b>, and expose them through a REST&nbsp;API inside the
+        them <b>gpt-oss-20b</b> and <b>Qwen2.5-7B-Instruct</b>, and expose them through a REST&nbsp;API inside the
         environment. Your software needs to read environment variables to connect to the REST API of the LLM.</p>
         <p>Each execution gets <b>4 CPU cores</b> and <b>40&nbsp;GB of RAM</b>, plus access to the
         hosted LLM model via REST API. The time limit is <b>5 minutes per case</b> and <b>4 hours</b> for a
