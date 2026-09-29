@@ -232,24 +232,31 @@ All internal retrieval datasets will be organized in the same way. We make three
   <li>retrieval-hessian-law-de-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/retrieval-hessian-law-de-spot-check">GitHub</a>)</li>
 </ul>
 
+The corresponding <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets">README</a> describes how you can download those datasets from tira (including the ground truth for evaluation).
+
 <h3 class="uk-margin-small-top">Available Datasets for Task 2 (Solving)</h3>
 
 Please see <a href="https://www.tira.io/datasets?query=uniagent">tira.io/datasets?query=uniagent</a> respectively <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets">the github repository</a> for an overview of all datasets.
-All internal solving datasets will be organized in the same way. We make one spot-check dataset available:
+All internal solving datasets will be organized in the same way. An agent has three potential cases to resolve, determined by their directory name:
 <ul>
-  <li>business-trip-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/business-trip-spot-check">GitHub</a>)</li>
+  <li><code>dienstreiseantrag-SOME-ID</code>: directories starting with <code>dienstreiseantrag</code> contain a business trip case.</li>
+  <li><code>beschaffungsantrag-SOME-ID</code>: directories starting with <code>beschaffungsantrag</code> contain a procurement case.</li>
+  <li><code>auslagenerstattung-SOME-ID</code>: directories starting with <code>auslagenerstattung</code> contain an expense reimbursement case.</li>
 </ul>
-<!-- TODO: once the three new spot-check sets are uploaded, replace the list above with this, replace links as needed. :)
+There is also a <code>retrieval-corpora</code> directory that contains a set of document corpora that can be indexed and used for retrieval tools.
+
+We make three spot-check datasets available:
 <ul>
-  <li>business-travel-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/business-travel-spot-check">GitHub</a>)</li>
-  <li>procurement-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/procurement-spot-check">GitHub</a>)</li>
-  <li>expense-reimbursement-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/expense-reimbursement-spot-check">GitHub</a>)</li>
+  <li>business-travel-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/business-trip-spot-check">GitHub</a>)</li>
+  <li>procurement-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/task-2-procurement-spot-check">GitHub</a>)</li>
+  <li>expense-reimbursement-spot-check (<a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets/task-2-expense-reimbursement-spot-check">GitHub</a>)</li>
 </ul>
--->
+
+The corresponding <a href="https://github.com/uniagent-webis-de/uniagent-code/tree/main/cikm26/datasets">README</a> describes how you can download those datasets from tira (including the ground truth for evaluation).
 
 
 <h3 class="uk-margin-small-top">Submission</h3>
-        <p>We do not publish the underlying case data, neither for development nor for evaluation, due to privacy reasons.</p>
+        <p>We do not publish the underlying case data, neither for development nor for evaluation, due to privacy reasons (only the spot-check datasets above are available).</p>
 
         <p> Please submit your agent as <b>code submission</b> via TIRA (i.e., a docker image build from the code). In TIRA, we then run the submissions in a sandbox against the
         data. See <a href="https://docs.tira.io/participants/participate.html" target="_blank" rel="noopener">TIRA&rsquo;s
