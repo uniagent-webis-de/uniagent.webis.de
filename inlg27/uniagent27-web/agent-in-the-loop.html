@@ -101,10 +101,6 @@
 <div class="uk-container">
 <div class="uk-container uk-margin-small">
 <h1 class="uk-margin-remove-top">Agent in the Loop 2027</h1>
-<div class="uk-alert uk-alert-warning" data-uk-alert>
-<p>This rendition is a <b>task proposal</b>. Venue and dates are to be announced, and the
-schedule is tentative until the proposal is accepted.</p>
-</div>
 <ul class="uk-list">
 <li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#synopsis">Synopsis</a></li>
 <li><span data-uk-icon="chevron-down"></span><a class="uk-margin-small-right" href="#important-dates">Important Dates</a></li>
@@ -141,8 +137,8 @@ schedule is tentative until the proposal is accepted.</p>
         reviewers, and LLM judges from
         TREC&nbsp;AutoJudge&nbsp;2026/27.</p>
 <ul>
-<li>Sub-tasks: textual cross-participant summaries, and structured comparison tables
-derived from them.</li>
+<li>Sub-tasks: textual cross-participant summaries, structured comparisons of the
+approaches, and quantitative analyses of their evaluation results.</li>
 <li>Communication: [<a href="https://www.tira.io/c/uniagent">UniAgent forum on TIRA</a>,
 <a href="mailto:uniagent@lists.its.uni-kassel.de">organizers</a>]</li>
 <li>Submission: [<a href="#submission">software via TIRA</a>,
@@ -164,41 +160,51 @@ derived from them.</li>
             </tbody>
         </table>
 
-<h2 id="motivation" class="uk-margin-large-top">Motivation: Revisiting the Epistemology of Shared Tasks under Generative AI</h2>
+<h2 id="motivation" class="uk-margin-large-top">Motivation: The Epistemic Role of Shared Tasks under Generative AI</h2>
         <p>Donna Harman (1992) characterized the first Text&nbsp;Retrieval&nbsp;Conference
         (TREC-1) as &ldquo;a friendly evaluation forum,&rdquo; whose importance &ldquo;is
-        not to show any system to be superior, but to allow comparison across a very
-        wide variety of techniques.&rdquo; Events like TREC-1 came to be known as
-        &lsquo;shared tasks&rsquo;&mdash;a name that captures the collaborative ethos of
-        science, and shared tasks have since become a pillar of empirical research in
-        many computer science disciplines.</p>
+        not to show any system to be superior, but to allow comparison across a very wide
+        variety of techniques, much wider than only one research group would
+        tackle.&rdquo; Events like TREC-1 soon came to be known as &ldquo;shared
+        tasks&rdquo; and have since become a pillar of empirical research in many
+        computer science disciplines. Beyond their structural elements rooted in
+        Cleverdon&rsquo;s Cranfield experiments, shared tasks are a prime example of
+        collaborative knowledge production, and thus an ideal object for examining how
+        &ldquo;right kinds of social organization and social norms enhance the prospects
+        of acquiring truth&rdquo; (O&rsquo;Connor et&nbsp;al., 2024).</p>
 
-        <p>We conceive of a shared task as a moderated <b>dialogue</b> among scientists
-        that forms a collective understanding of a task and how progress on it can be
-        measured: organizers open the dialogue with a <b>(1)&nbsp;task description</b>;
-        participants reply by documenting their independently developed ideas in
-        <b>(2)&nbsp;notebook papers</b>; organizers, in turn, quantitatively analyze the
-        runs and qualitatively synthesize the analysis results and participants&rsquo;
-        contributions in an <b>(3)&nbsp;overview paper</b>; and, off-stage, attendees
-        continue the dialogue at a workshop through <b>(4)&nbsp;talks</b> and
-        <b>(5)&nbsp;discussions</b>. Much of a shared task&rsquo;s power arises from this
-        information pooling: by inviting independent solutions, it collects the
-        &ldquo;Wisdom of the Crowds,&rdquo; requiring organizers to defend only the
-        importance of the task, not to anticipate its solution space.</p>
+        <p>We conceive of a shared task as a structured <b>dialogue</b> among experts
+        that forms a collective understanding of a task, how it can be operationalized,
+        and how progress on it can be measured: organizers open the dialogue with a
+        <b>(1)&nbsp;task description</b>; participants independently develop solutions,
+        submit runs, and reply with <b>(2)&nbsp;notebook papers</b>; organizers, in turn,
+        analyze the runs, appraise the contributions, and synthesize the task&rsquo;s
+        insights in an <b>(3)&nbsp;overview paper</b>; and, off-stage, attendees continue
+        at a workshop through <b>(4)&nbsp;talks</b> and <b>(5)&nbsp;discussions</b>. By
+        pooling independent solutions, a shared task collects the &ldquo;wisdom of the
+        crowds&rdquo; (Surowiecki, 2004), with the organizers ensuring that every
+        contribution is duly reflected.</p>
 
-        <p>Generative AI challenges this social epistemology. If the written dialogue
-        of a shared task were removed, only its engineered artifacts would remain,
-        absent of interpretation and critical reflection&mdash;a regression to the
-        &ldquo;show and tell&rdquo; culture that Karen Sp&auml;rck&nbsp;Jones (1981)
-        criticized and that originally inspired Harman to invent the shared task.
-        At the same time, agentic AI raises new questions for collaborative knowledge
-        production: How independent are two participants&rsquo; solutions if they used
-        the same LLM? How do scientists validate, and to which extent rely on,
-        LLM-generated input? We cannot address all these questions at once, so we start
-        with the dialogic and social nature of knowledge production, using the written
-        dialogue turns between participants and organizers as points of reference for
-        understanding in what capacity generative AI can <i>support</i>, rather than
-        replace, the shared task dialogue.</p>
+        <p>Despite this, many of today&rsquo;s shared tasks are reduced to their
+        leaderboards (Ethayarajh and Jurafsky, 2020), although the comparison Harman
+        envisioned requires understanding the systems, not just ranking them. This
+        synthesis is documented in <b>overview papers</b>, which resemble scientific
+        reviews of contributions made comparable a priori through a common task, data,
+        and evaluation: they normalize terminology across differently described
+        approaches, relate methodological choices to outcomes, and make visible patterns
+        that emerge only across systems&mdash;including insights that leaderboards hide,
+        such as a promising idea from a lower-ranked system.</p>
+
+        <p>Generative AI challenges this social epistemology. With agentic AI, a single
+        researcher can explore a task&rsquo;s solution space far more systematically
+        than before, but if everybody relies on the same AI, will the pooling of
+        independent thought become homogenized, raising questions of &ldquo;epistemic
+        reliance&rdquo; (Wilholt, 2013; Greco, 2021)? And how do organizers make sense
+        of, validate, and rely on LLM-generated contributions? Agent&nbsp;in&nbsp;the&nbsp;Loop
+        makes knowledge synthesis an experiment in itself, contrasting for the first time
+        human-authored overview papers with agent-generated syntheses, and reflecting on
+        the questions this raises together with our participants and the organizers of
+        other shared tasks.</p>
 
 <h2 id="task" class="uk-margin-large-top">Task</h2>
         <p>In its most generic form, the task we study can be described as
@@ -213,66 +219,90 @@ derived from them.</li>
         available or donated by volunteers, code, datasets, models, revision
         histories, issue tracker logs, or chat logs with teammates or bots.</p>
 
-        <p>Agents must produce two types of summaries that are typically found in
+        <p>Agents must produce three types of summaries that are typically found in
         shared task overview papers:</p>
         <ol class="uk-list uk-list-decimal">
-            <li><b>Textual cross-participant summaries</b> that summarize all
-            approaches submitted to the host shared task in a consistent language and
-            terminology.</li>
-            <li><b>Structured comparison tables</b> that, based on the textual
-            summaries created in Task&nbsp;1, derive a structured comparison of all
-            approaches along to-be-discovered key dimensions.</li>
+            <li><b>Cross-participant summaries</b> that describe the individual
+            approaches submitted to the host shared task and their results in a
+            unified way.</li>
+            <li><b>Structured comparisons</b> of all approaches along salient
+            dimensions.</li>
+            <li><b>Quantitative analyses</b> of the evaluation results of the
+            submitted approaches, resulting in a critical appraisal.</li>
         </ol>
+        <p>An agent can be developed to address each subtask individually, but it can
+        also use its own output of any subtask to solve another iteratively: all three
+        subtasks share a unified input environment into which the output of each
+        subtask is written (see the example below).</p>
 
         <p>Approaches may range from zero-shot prompting to tool-using agentic setups
         that plan, run, and interpret task-specific analyses before generating text.
-        Submitted agents are run on TIRA against held-out artifacts and using LLMs we
-        provide, ensuring blinded experimentation and reproducible execution. The
-        resulting summaries are evaluated against the summaries we curate from the
-        corresponding overview papers, measuring how faithfully the salient scientific
-        contributions are recovered.</p>
+        Submitted agents are run on TIRA against held-out shared tasks and using LLMs
+        we provide, ensuring blinded experimentation and reproducible execution. The
+        three outputs are evaluated against the overview papers of designated test
+        shared tasks, measuring and manually assessing how faithfully the salient
+        scientific contributions are recovered.</p>
 
         <figure class="uk-margin">
-            <table class="uk-table uk-table-divider uk-table-small uk-table-hover uk-table-striped">
+            <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-divider uk-table-small">
                 <thead>
                     <tr>
-                        <th colspan="1">&nbsp;</th>
-                        <th>Task&nbsp;1: Textual Cross-Participant Summary</th>
-                        <th colspan="3">Task&nbsp;2: Structured Comparison</th>
+                        <th>Subtask</th>
+                        <th>1: Cross-participant summary</th>
+                        <th>2: Structured comparison</th>
+                        <th>3: Quantitative analysis</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><b>Input</b></td>
-                        <td>Notebook paper, code, and logs of Team&nbsp;A and&nbsp;B</td>
-                        <td colspan="3">Text summaries of Team&nbsp;A and Team&nbsp;B from Task&nbsp;1</td>
+                        <td rowspan="2"><b>Input environment</b></td>
+                        <td colspan="3" class="uk-text-center">The notebook papers, code, runs,
+                        and (optionally pre-computed) evaluation results of Teams&nbsp;A and&nbsp;B</td>
                     </tr>
                     <tr>
-                        <td rowspan="2"><b>Output</b></td>
-                        <td rowspan="2">Team&nbsp;A uses an LLM with retrieval on the training data
+                        <td>+ outputs of Subtasks&nbsp;2 and&nbsp;3</td>
+                        <td>+ outputs of Subtasks&nbsp;1 and&nbsp;3</td>
+                        <td>+ outputs of Subtasks&nbsp;1 and&nbsp;2</td>
+                    </tr>
+                    <tr>
+                        <td><b>Output example</b></td>
+                        <td>Team&nbsp;A uses an LLM with retrieval on the training data
                         for in-context learning to improve classification. Team&nbsp;B uses a CNN
                         trained on the official training set.</td>
-                        <td><b>Team</b></td>
-                        <td><b>Model</b></td>
-                        <td><b>Training Data Usage</b></td>
-                    </tr>
-                    <tr>
-                        <td>A</td>
-                        <td>LLM</td>
-                        <td>In-context learning</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>B</td>
-                        <td>CNN</td>
-                        <td>Model training</td>
+                        <td>
+                            <table class="uk-table uk-table-small uk-margin-remove">
+                                <thead>
+                                    <tr><th>Team</th><th>Model</th><th>Training Data Usage</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A</td><td>LLM</td><td>In-context learning</td></tr>
+                                    <tr><td>B</td><td>CNN</td><td>Model training</td></tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="uk-table uk-table-small uk-margin-remove">
+                                <thead>
+                                    <tr><th>Team</th><th>F1</th><th>Runtime</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A</td><td>0.75</td><td>15&nbsp;s</td></tr>
+                                    <tr><td>B</td><td>0.76</td><td>90&nbsp;s</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="uk-margin-small-top">Although Team&nbsp;A&rsquo;s F1 score is
+                            slightly lower, their approach is superior due to its faster runtime.</p>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <figcaption class="uk-text-meta uk-margin-small-top">Example for the two
-            subtasks: (1)&nbsp;textual cross-participant summaries, and (2)&nbsp;a
-            structured comparison derived from them.</figcaption>
+            </div>
+            <figcaption class="uk-text-meta uk-margin-small-top">Example for the three
+            subtasks: given a test shared task with two participating teams A and B, an
+            agent gets a unified input environment across all three subtasks into which
+            the output of each subtask is written, so that it can be used as input when
+            generating or revising the output of another subtask.</figcaption>
         </figure>
 
 <h2 id="data" class="uk-margin-large-top">Data &amp; Corpus</h2>
@@ -283,28 +313,42 @@ derived from them.</li>
         different, incompatible language for the same underlying concept&mdash;and,
         where available, code implementing the described idea; and <b>(2)&nbsp;the
         organizers&rsquo; overview paper</b>, which summarizes all notebook papers in a
-        unified, standardized language, typically both as a textual description per
-        approach and as a table comparing all approaches along a shared feature
-        space. These two summary types are the basis for our two subtasks: for
-        Task&nbsp;1 we extract the textual per-approach summaries from the overview
-        paper, and for Task&nbsp;2 we extract the comparison table, where one exists.</p>
+        unified, standardized language, typically as a textual description per
+        approach, as a table comparing all approaches along a shared feature
+        space, and as an appraisal of the approaches&rsquo; performance. These
+        summary types are the basis for our three subtasks: for Task&nbsp;1 we
+        extract the textual per-approach summaries from the overview paper, for
+        Task&nbsp;2 the comparison table, where one exists, and for Task&nbsp;3 the
+        tabular and, if available, textual appraisal of the approaches&rsquo;
+        performance.</p>
 
         <h3 class="uk-margin-small-top">Corpus construction</h3>
-        <p>We build the corpus from the proceedings of <b>SemEval</b> and <b>CLEF</b>,
-        which document each shared task together with the papers of its participants.
-        We collect the ACL&nbsp;Anthology and CEUR-WS volumes of SemEval and CLEF, one
-        volume per edition, treating their index pages as the authoritative table of
-        contents. Overview papers are paired with notebook papers through titles and
+        <p>We build the corpus from the proceedings of regular shared task venues:
+        <b>SemEval</b>, <b>CLEF</b>, <b>TREC</b>, <b>NTCIR</b>, <b>FIRE</b>,
+        <b>MediaEval</b>, and the <b>SISAP</b> Indexing Challenge, which document each
+        shared task together with the papers of its participants. For each edition, we
+        collect the official proceedings&mdash;the ACL&nbsp;Anthology volumes of
+        SemEval, the CEUR-WS working notes of CLEF, the NIST proceedings of TREC, the
+        NII online proceedings of NTCIR, the FIRE archive and CEUR-WS working notes, the
+        MediaEval history and CEUR-WS proceedings, and the SISAP challenge pages and
+        conference proceedings&mdash;treating their index pages as the authoritative
+        table of contents. DBLP serves only as a supplemental check that may confirm
+        metadata; it never adds a paper or decides which task a paper belongs to.
+        Overview papers are paired with notebook papers through titles and
         the section structure of a volume; for CLEF, where a lab section contains
         exactly one overview paper, its remaining papers are treated as notebook
         papers, while sections with several overview papers (an ambiguous case specific
         to CEUR-WS&rsquo;s ordering) are set aside for manual review. Every PDF is
         retrieved and its text layer converted to Markdown with
         <a href="https://github.com/run-llama/liteparse" target="_blank" rel="noopener">liteparse</a>,
-        which preserves heading structure; figures and tables are extracted alongside
-        the text. For each notebook paper we additionally record links to
-        participants&rsquo; code, and for each overview paper the number of teams and
-        runs it reports, where stated.</p>
+        which preserves heading structure, renders tables as Markdown, and extracts
+        the images embedded in the PDF; captioned figures and tables, including
+        vector graphics, are additionally extracted with
+        <a href="https://github.com/allenai/pdffigures2" target="_blank" rel="noopener">PDFFigures2</a>.
+        For each notebook paper we additionally record links to participants&rsquo;
+        code, and for each overview paper the number of teams and runs it reports,
+        where stated; the participants&rsquo; runs themselves are not part of the
+        corpus.</p>
 
         <h3 class="uk-margin-small-top">Preventing test data leakage</h3>
         <p>To prevent leakage into commercial and fine-tuned models, evaluation uses
@@ -338,23 +382,39 @@ derived from them.</li>
         through the submission system.</p>
 
 <h2 id="evaluation" class="uk-margin-large-top">Evaluation</h2>
-        <p>We combine fully automated evaluation with evaluation involving members of
-        the organizing committees of the selected host shared tasks:</p>
+        <p>For all shared tasks used as test cases, the human-authored passages
+        extracted from their overview papers serve as <b>reference</b> rather than
+        gold standard. Overview authors make choices about terminology, abstraction,
+        salience, and dimensions of comparison, so alternative outputs may remain
+        faithful and informative despite differing from the published reference. We
+        therefore combine automatic, manual, and qualitative evaluation.</p>
+
+        <h3 class="uk-margin-small-top">Automatic evaluation</h3>
         <ul class="uk-list uk-list-bullet">
-            <li><b>Task&nbsp;1 (textual cross-participant summaries).</b> Automated
-            evaluation compares generated summaries against ground-truth summaries with
-            text summarization measures (e.g., variants of BLEU, BERTScore) and
-            LLM-as-a-Judge, including Nugget-based evaluations collected as part of
-            TREC&nbsp;AutoJudge.</li>
-            <li><b>Task&nbsp;2 (structured comparisons).</b> We use precision, recall,
-            and F1 against the ground-truth comparison tables.</li>
+            <li><b>All three tasks.</b> Generated outputs are compared with the
+            corresponding reference passages extracted from the organizers&rsquo;
+            overview papers using text summarization measures (e.g., variants of BLEU
+            and BERTScore) and LLM-as-a-Judge approaches, including Nugget-based
+            evaluations from TREC&nbsp;AutoJudge.</li>
+            <li><b>Task&nbsp;2 (structured comparisons).</b> In addition, the
+            generated comparisons are evaluated against the reference comparison
+            tables using precision, recall, and F1.</li>
         </ul>
-        <p>For the manual evaluation, we ask organizers of the selected host shared
-        tasks to provide feedback on how well the generated content captures their
-        own, in the form of a comparative analysis against their own overview paper
-        summaries. This expert comparison lets us identify cases where generated
-        content surfaces novel and interesting aspects that enrich the understanding
-        of the host task&rsquo;s solution space.</p>
+
+        <h3 class="uk-margin-small-top">Manual evaluation</h3>
+        <p>Volunteering organizers of the selected host shared tasks assess the
+        generated outputs against both the underlying participant contributions and
+        their own reference summaries or tables. This allows us to identify outputs
+        that are faithful but differ from the published reference, including cases
+        where generated content exposes useful relationships or distinctions not made
+        explicit in the organizers&rsquo; original synthesis. We further employ
+        third-party assessors to enable a blinded comparison between generated and
+        organizer-authored content.</p>
+
+        <h3 class="uk-margin-small-top">Qualitative evaluation</h3>
+        <p>Finally, we conduct a qualitative evaluation using entry and exit
+        questionnaires for volunteering organizers and, if possible, expert
+        interviews.</p>
 
 <h2 id="submission" class="uk-margin-large-top">Submission</h2>
 <p>Participants submit their agent as working software via
@@ -389,7 +449,7 @@ tasks. The full participation process is described on the
 <div>
     <div class="uk-card uk-card-default uk-card-body">
         <a href="/organization.html#organizing-committee" class="uk-link-reset">
-            <div class="thumbnail-left"><img src="/img/people/silhouette-male.jpg" alt="Ben Gerhards"></div>
+            <div class="thumbnail-left"><img src="/img/people/gerhards.jpg" alt="Ben Gerhards"></div>
             <div class="uk-height-1-1">
                 <div class="uk-card-title">Ben Gerhards</div>
                 <div class="uk-text-muted uk-margin-small-top uk-margin-small-bottom">University of Kassel, hessian.AI &middot; PhD student &middot; Corpus construction, task organization</div>
